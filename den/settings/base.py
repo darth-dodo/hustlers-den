@@ -25,6 +25,10 @@ def get_env_variable(var_name):
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
+# import django
+# django.setup()
+
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -36,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # den apps
+    'knowledge',
 ]
 
 MIDDLEWARE = [
