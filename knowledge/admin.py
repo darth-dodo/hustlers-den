@@ -2,14 +2,20 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
+from jet.admin import CompactInline
 
 
-class CategoriesInline(admin.TabularInline):
+class CategoriesInline(CompactInline):
     model = KnowledgeStore.categories.through
 
 
-class KnowledgeStoreInline(admin.TabularInline):
+class KnowledgeStoreInline(CompactInline):
     model = KnowledgeStore
+    readonly_fields = ('name', 'expertise_level', 'slug',
+                       'categories', 'description',
+                       'url')
+    exclude = ('is_active', 'created_at', 'modified_at', 'difficulty_sort',)
+    can_delete = False
 
 
 class KnowledgeStoreAdmin(admin.ModelAdmin):
@@ -64,4 +70,4 @@ class ExpertiseLevelAdmin(admin.ModelAdmin):
         model = ExpertiseLevel
 
 
-admin.site.register(ExpertiseLevel, CategoriesAdmin)
+admin.site.register(ExpertiseLevel, ExpertiseLevelAdmin)
