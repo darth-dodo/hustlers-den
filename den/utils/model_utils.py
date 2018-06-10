@@ -3,14 +3,14 @@ from django.utils.crypto import get_random_string
 from django.db import models
 
 
-def custom_slugify(source_field, suffix=False):
+def custom_slugify(data, suffix=True, offset=15):
     """
     Using django util methods create a slug.
     Append a random string at the end of the slug if necessary for making it unique
     """
 
     # slugify the source_field passed to the function
-    new_slug = slugify(source_field)
+    new_slug = slugify(data)[:offset]
 
     if suffix:
         # get a random string of length 10
