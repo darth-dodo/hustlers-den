@@ -22,5 +22,5 @@ admin.site.site_header = ADMIN_SITE_HEADER
 
 urlpatterns = [
     url(r'^', admin.site.urls),
-    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(r'^jet/', include('jet.urls', 'jet')),
 ]
