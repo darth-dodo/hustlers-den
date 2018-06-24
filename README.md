@@ -10,15 +10,19 @@
 
 - [x] Adding users to knowledge store
 
-- [x] Setup drf
+- [x] Setup DRF
 
-- [ ] Setup jwt auth
+- [x] Setup Hustler serializer
 
-- [ ] Read only viewsets based on auth token for knowledge base
+- [x] Setup JWT, Session and Basic auth using DRF
+
+- [x] Custom JWT payload generator
+
+- [x] Read only viewsets based on auth token for knowledge base
 
 - [ ] Appropriate filters and searches
 
-- [ ] Swagger + coreapi for better REST API interface
+- [ ] Swagger + Coreapi for better REST API interface
 
 - [ ] EagerLoadingMixin for prefetching
 
@@ -28,7 +32,9 @@
 
 - [ ] Slack integration
 
-- [ ] Sign up via rest api
+- [ ] Hustler Sign up via REST api
+
+- [ ] Hustler Activation flow via Admin Panel and REST API
 
 - [ ] Discussion module
 

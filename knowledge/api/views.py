@@ -1,10 +1,11 @@
 # framework level libraries
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from rest_framework.filters import (
-    SearchFilter,
-    OrderingFilter,
-    )
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 # project level imports
 
@@ -23,7 +24,8 @@ class ReadOnlyKnowledgeAbstractViewSet(viewsets.ReadOnlyModelViewSet):
     Abstract Parent Readonly ViewSet
     """
     serializer_class = None
-    permission_classes = [AllowAny]
+    authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = []
     filter_fields = []
