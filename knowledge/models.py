@@ -10,8 +10,8 @@ class Category(RowInformation):
     database, python, django, rails ,flask etc
     """
     name = models.CharField(max_length=100, blank=False, null=False)
-    description = models.TextField(null=True, blank=True)
-    slug = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    slug = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         db_table = 'category'
@@ -31,7 +31,7 @@ class MediaType(RowInformation):
     Conf video, article, interactive tutorial
     """
     name = models.CharField(max_length=100, blank=False, null=False)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
@@ -53,7 +53,7 @@ class ExpertiseLevel(RowInformation):
     eg. Novice, Apprentice, Master, Expert
     """
     name = models.CharField(max_length=100, blank=False, null=False)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
@@ -74,7 +74,7 @@ class KnowledgeStore(RowInformation):
     """
     name = models.CharField(max_length=100, blank=False, null=False)
     url = models.URLField(null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(blank=True)
 
     # associations
     expertise_level = models.ForeignKey(to=ExpertiseLevel,
