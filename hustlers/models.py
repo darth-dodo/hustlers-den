@@ -4,7 +4,6 @@ from django.contrib.auth.models import User, Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from knowledge.models import Category
 from hustlers.utils.permission_utils import assign_hustler_admin_panel_access, \
     assign_hustler_permission_group
 from hustlers.constants import REGULAR_HUSTLER_PERMISSIONS
@@ -27,7 +26,7 @@ class Hustler(models.Model):
                                    blank=True,
                                    on_delete=models.SET_NULL)
 
-    interests = models.ManyToManyField(to=Category,
+    interests = models.ManyToManyField(to="knowledge.Category",
                                        blank=True,
                                        related_name='hustlers')
 

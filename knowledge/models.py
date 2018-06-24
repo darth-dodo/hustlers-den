@@ -1,8 +1,16 @@
+# third party imports
+
+# django imports
 from django.db import models
 from django.utils.text import slugify
-# Create your models here.
 
+# project level imports
 from den.utils.model_utils import RowInformation, custom_slugify
+from hustlers.models import Hustler
+
+# app level imports
+
+# TODO data integrity for active hustler check and hustler abstract model
 
 
 class Category(RowInformation):
@@ -12,6 +20,10 @@ class Category(RowInformation):
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
+    created_by = models.ForeignKey(to=Hustler,
+                                   related_name='categories',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
 
     class Meta:
         db_table = 'category'
@@ -33,6 +45,10 @@ class MediaType(RowInformation):
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
+    created_by = models.ForeignKey(to=Hustler,
+                                   related_name='media_types',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
 
     class Meta:
         db_table = 'media_type'
@@ -55,6 +71,11 @@ class ExpertiseLevel(RowInformation):
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
+    created_by = models.ForeignKey(to=Hustler,
+                                   related_name='expertise_levels',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
+
 
     class Meta:
         db_table = 'expertise_level'
@@ -76,6 +97,9 @@ class KnowledgeStore(RowInformation):
     url = models.URLField(null=True, blank=True)
     description = models.TextField(blank=True)
 
+    # internal ordering for sorting resources instead knowledge store for a particular expertise level
+    difficulty_sort = models.PositiveIntegerField(default=1)
+
     # associations
     expertise_level = models.ForeignKey(to=ExpertiseLevel,
                                         related_name='knowledge_store',
@@ -87,8 +111,10 @@ class KnowledgeStore(RowInformation):
                                    on_delete=models.SET_NULL,
                                    null=True)
 
-    # internal ordering for sorting resources instead knowledge store for a particular expertise level
-    difficulty_sort = models.PositiveIntegerField(default=1)
+    created_by = models.ForeignKey(to=Hustler,
+                                   related_name='knowledge_store',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
 
     categories = models.ManyToManyField(to=Category,
                                         related_name='knowledge_store')

@@ -8,7 +8,7 @@
 
 - [x] Adding users
 
-- [ ] Adding users to knowledge store
+- [x] Adding users to knowledge store
 
 - [ ] Setup drf 
 
@@ -19,6 +19,8 @@
 - [ ] Appropriate filters and searches
 
 - [ ] Swagger + coreapi for better REST API interface
+
+- [ ] Deploy on Heroku/PA
 
 - [ ] EagerLoadingMixin for prefetching
 
