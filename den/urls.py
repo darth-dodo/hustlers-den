@@ -6,6 +6,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework.documentation import include_docs_urls
 
+from den.settings.base import get_env_variable
+
 
 schema_view = get_swagger_view(title='Hustlers Den API')
 
@@ -24,3 +26,10 @@ urlpatterns = [
     path(r'docs/', include_docs_urls(title='Hustlers Den API')),
     path(r'swagger-docs/', schema_view),
 ]
+
+
+if get_env_variable('DEBUG_TOOLBAR'):
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
