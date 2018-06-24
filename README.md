@@ -26,7 +26,7 @@
 
 - [x] Django Debug Toolbar, Query Count and Django Power Shell for efficient debugging
 
-- [ ] Eager Loading for Serializers
+- [x] Eager Loading for Serializers
 
 - [ ] Deploy on Heroku/PA
 
