@@ -9,6 +9,7 @@ from den.utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
 
 # app level imports
+from knowledge.managers import CategoryManager, KnowledgeStoreManager, MediaTypeManager, ExpertiseLevelManager
 
 # TODO data integrity for active hustler check and hustler abstract model
 
@@ -24,6 +25,8 @@ class Category(RowInformation):
                                    related_name='categories',
                                    on_delete=models.SET_NULL,
                                    null=True)
+
+    objects = CategoryManager()
 
     class Meta:
         db_table = 'category'
@@ -49,6 +52,8 @@ class MediaType(RowInformation):
                                    related_name='media_types',
                                    on_delete=models.SET_NULL,
                                    null=True)
+
+    objects = MediaTypeManager()
 
     class Meta:
         db_table = 'media_type'
@@ -76,6 +81,7 @@ class ExpertiseLevel(RowInformation):
                                    on_delete=models.SET_NULL,
                                    null=True)
 
+    objects = ExpertiseLevelManager()
 
     class Meta:
         db_table = 'expertise_level'
@@ -120,6 +126,8 @@ class KnowledgeStore(RowInformation):
                                         related_name='knowledge_store')
 
     slug = models.CharField(max_length=100, null=True, blank=True)
+
+    objects = KnowledgeStoreManager()
 
     class Meta:
         db_table = 'knowledge_store'
