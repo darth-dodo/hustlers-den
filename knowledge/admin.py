@@ -19,7 +19,7 @@ class KnowledgeStoreInline(CompactInline):
     model = KnowledgeStore
     readonly_fields = ('name', 'expertise_level', 'slug',
                        'categories', 'description',
-                       'resource_url', 'media_type', )
+                       'resource_url', 'media_type', 'created_by')
     list_display_links = ['__str__']
     exclude = ('is_active', 'created_at', 'modified_at', 'difficulty_sort', 'url',)
     can_delete = False
@@ -34,6 +34,7 @@ class KnowledgeStoreAdmin(admin.ModelAdmin):
     search_fields = ['name', 'url']
     list_display_links = ['__str__']
     list_filter = ['categories', 'expertise_level']
+    list_select_related = ['expertise_level', 'media_type', 'created_by']
 
     inlines = [KnowledgeStoreCategoriesInline]
 
@@ -49,9 +50,10 @@ admin.site.register(KnowledgeStore, KnowledgeStoreAdmin)
 
 
 class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'description', 'slug')
+    list_display = ('__str__', 'description', 'slug', 'created_by')
     search_fields = ['name', 'slug']
     list_display_links = ['__str__']
+    list_select_related = ['created_by']
 
     class Meta:
         model = Category
@@ -61,9 +63,10 @@ admin.site.register(Category, CategoriesAdmin)
 
 
 class MediaTypesAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'description', 'slug')
+    list_display = ('__str__', 'description', 'slug', 'created_by')
     search_fields = ['name', 'slug']
     list_display_links = ['__str__']
+    list_select_related = ['created_by']
 
     inlines = [KnowledgeStoreInline]
 
@@ -75,9 +78,10 @@ admin.site.register(MediaType, MediaTypesAdmin)
 
 
 class ExpertiseLevelAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'description', 'slug')
+    list_display = ('__str__', 'description', 'slug', 'created_by')
     search_fields = ['name', 'slug']
     list_display_links = ['__str__']
+    list_select_related = ['created_by']
 
     inlines = [KnowledgeStoreInline]
 
