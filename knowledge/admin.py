@@ -7,6 +7,11 @@ from django.utils.html import format_html
 
 
 class CategoriesInline(CompactInline):
+    model = Category
+    can_delete = False
+
+
+class KnowledgeStoreCategoriesInline(CategoriesInline):
     model = KnowledgeStore.categories.through
 
 
@@ -19,28 +24,24 @@ class KnowledgeStoreInline(CompactInline):
     exclude = ('is_active', 'created_at', 'modified_at', 'difficulty_sort', 'url',)
     can_delete = False
 
-    def resource_url(self, obj):
+    @staticmethod
+    def resource_url(obj):
         return format_html('<a href="{0}" target="_blank" >{0}</a>', obj.url)
-
-
-
-class CategoricalKnowledgeStoreInline(CompactInline):
-    model = Category.knowledge_store.through
-    can_delete = False
 
 
 class KnowledgeStoreAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'expertise_level', 'difficulty_sort', 'resource_url')
     search_fields = ['name', 'url']
     list_display_links = ['__str__']
-    list_filter = ['categories__name']
+    list_filter = ['categories', 'expertise_level']
 
-    inlines = [CategoriesInline]
+    inlines = [KnowledgeStoreCategoriesInline]
 
     class Meta:
         model = KnowledgeStore
 
-    def resource_url(self, obj):
+    @staticmethod
+    def resource_url(obj):
         return format_html('<a href="{0}" target="_blank" >{0}</a>', obj.url)
 
 
@@ -51,8 +52,6 @@ class CategoriesAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'description', 'slug')
     search_fields = ['name', 'slug']
     list_display_links = ['__str__']
-
-    # inlines = [CategoricalKnowledgeStoreInline]
 
     class Meta:
         model = Category
