@@ -4,29 +4,29 @@
 
 - [x] Setting up django project
 
-- [x] Adding knowledge store
+- [x] [Adding knowledge store](https://github.com/darth-dodo/hustlers-den/pull/2)
 
-- [x] Adding users
+- [x] [Adding users](https://github.com/darth-dodo/hustlers-den/pull/5)
 
-- [x] Adding users to knowledge store
+- [x] [Adding users to knowledge store](https://github.com/darth-dodo/hustlers-den/pull/6)
 
-- [x] Setup DRF
+- [x] Setup [DRF](http://www.django-rest-framework.org/)
 
 - [x] Setup Hustler serializer
 
-- [x] Setup JWT, Session and Basic auth using DRF
+- [x] Setup [JWT](https://github.com/GetBlimp/django-rest-framework-jwt), Session and Basic auth using DRF
 
 - [x] Custom JWT payload generator
 
 - [x] Read only viewsets based on auth token for knowledge base
 
-- [x] Appropriate filters and searches
+- [x] Appropriate [filters and searches](https://github.com/carltongibson/django-filter)
 
-- [x] Swagger + Coreapi for better REST API interface
+- [x] [Swagger + Coreapi for better REST API interface](https://github.com/darth-dodo/hustlers-den/pull/10)
 
-- [x] Django Debug Toolbar, Query Count and Django Power Shell for efficient debugging
+- [x] [Django Debug Toolbar, Query Count Middlewares and Django Power Shell for efficient debugging](https://github.com/darth-dodo/hustlers-den/pull/11)
 
-- [x] Eager Loading for Serializers
+- [x] Eager Loading for Serializers to prevent N+1 queries
 
 - [ ] Deploy on Heroku/PA
 
