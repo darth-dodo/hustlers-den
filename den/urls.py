@@ -23,4 +23,6 @@ admin.site.site_header = ADMIN_SITE_HEADER
 urlpatterns = [
     url(r'^', admin.site.urls),
     url(r'^jet/', include('jet.urls', 'jet')),
+    # url(r'^knowledge/api/', include('knowledge.api.urls')),
+    url(r'^api/knowledge/', include('knowledge.api.urls')),
 ]
