@@ -39,7 +39,7 @@ class Hustler(models.Model):
     @classmethod
     def from_db(cls, db, field_names, values):
         new = super(Hustler, cls).from_db(db, field_names, values)
-        # cache value went from the base
+        # cache existing value
         new._updated_django_user_id = values[field_names.index('django_user_id')]
         return new
 
