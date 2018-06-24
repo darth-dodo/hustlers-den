@@ -8,6 +8,7 @@ from django_filters import rest_framework as filters
 
 
 # project level imports
+from den.utils.views_utils import eager_load
 
 # app level imports
 from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
@@ -82,4 +83,9 @@ class KnowledgeStoreViewSet(ReadOnlyKnowledgeAbstractViewSet):
     search_fields = ['name', 'slug']
     ordering_fields = ['created_at']
     ordering = ['-created_at']
-    queryset = KnowledgeStore.objects.active()
+    queryset_class = KnowledgeStore
+    queryset = queryset_class.objects.active()
+
+    @eager_load
+    def get_queryset(self):
+        return self.queryset_class.objects.active()
