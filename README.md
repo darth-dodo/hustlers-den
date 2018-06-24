@@ -22,9 +22,11 @@
 
 - [x] Appropriate filters and searches
 
-- [ ] Swagger + Coreapi for better REST API interface
+- [x] Swagger + Coreapi for better REST API interface
 
-- [ ] EagerLoadingMixin for prefetching
+- [ ] Django Debug Toolbar and Django Power Shell for efficient debugging
+
+- [ ] Eager Loading for Serializers
 
 - [ ] Deploy on Heroku/PA
 
