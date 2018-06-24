@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     # den apps
     'knowledge',
     'hustlers',
+
+    #swagger app
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
