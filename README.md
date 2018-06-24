@@ -10,7 +10,7 @@
 
 - [x] Adding users to knowledge store
 
-- [ ] Setup drf 
+- [x] Setup drf
 
 - [ ] Setup jwt auth
 
@@ -20,9 +20,9 @@
 
 - [ ] Swagger + coreapi for better REST API interface
 
-- [ ] Deploy on Heroku/PA
-
 - [ ] EagerLoadingMixin for prefetching
+
+- [ ] Deploy on Heroku/PA
 
 - [ ] Export data in csv using admin actions
 
