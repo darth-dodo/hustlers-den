@@ -26,15 +26,11 @@ def get_env_variable(var_name):
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
-# import django
-# django.setup()
-
-
+# TODO change this
 ALLOWED_HOSTS = ['*']
 
-# Application definition
-
 INSTALLED_APPS = [
+    'django_extensions',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',

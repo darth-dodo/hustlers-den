@@ -12,3 +12,25 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
        }
 }
+
+QUERYCOUNT = {
+    'THRESHOLDS': {
+        'MEDIUM': 50,
+        'HIGH': 200,
+        'MIN_TIME_TO_LOG': 0,
+        'MIN_QUERY_COUNT_TO_LOG': 0
+    },
+    'IGNORE_REQUEST_PATTERNS': [],
+    'IGNORE_SQL_PATTERNS': [],
+    'DISPLAY_DUPLICATES': 20,
+}
+
+INSTALLED_APPS += ['debug_toolbar', ]
+
+MIDDLEWARE += [
+               'querycount.middleware.QueryCountMiddleware',
+               'debug_toolbar.middleware.DebugToolbarMiddleware',
+               ]
+
+# django debug toolbar allowed internal ips
+INTERNAL_IPS = ['127.0.0.1']

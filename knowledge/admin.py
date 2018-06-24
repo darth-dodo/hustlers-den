@@ -34,6 +34,7 @@ class KnowledgeStoreInline(CompactInline):
         if obj.url:
             return format_html('<a href="{0}" target="_blank" >{0}</a>', obj.url)
 
+
 class KnowledgeStoreAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'expertise_level', 'difficulty_sort', 'resource_url')
     search_fields = ['name', 'url']
