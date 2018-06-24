@@ -20,7 +20,7 @@
 
 - [x] Read only viewsets based on auth token for knowledge base
 
-- [ ] Appropriate filters and searches
+- [x] Appropriate filters and searches
 
 - [ ] Swagger + Coreapi for better REST API interface
 
