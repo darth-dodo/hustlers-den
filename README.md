@@ -24,7 +24,7 @@
 
 - [x] Swagger + Coreapi for better REST API interface
 
-- [ ] Django Debug Toolbar and Django Power Shell for efficient debugging
+- [x] Django Debug Toolbar, Query Count and Django Power Shell for efficient debugging
 
 - [ ] Eager Loading for Serializers
 
