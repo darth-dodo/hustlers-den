@@ -1,10 +1,13 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from knowledge.models import Category
+from hustlers.utils.permission_utils import assign_hustler_admin_panel_access, \
+    assign_hustler_permission_group
+from hustlers.constants import REGULAR_HUSTLER_PERMISSIONS
 
 
 class Hustler(models.Model):
@@ -43,6 +46,8 @@ class Hustler(models.Model):
 
     def save(self, *args, **kwargs):
 
+        hustler_created = True if self._state.adding else False
+
         if hasattr(self, '_updated_django_user_id'):
 
             if (not self._state.adding
@@ -52,6 +57,12 @@ class Hustler(models.Model):
                 raise ValidationError("You cannot reassign Hustler to different User!")
 
         super(Hustler, self).save(*args, **kwargs)
+
+        if hustler_created:
+            assign_hustler_admin_panel_access(self, **REGULAR_HUSTLER_PERMISSIONS.get('admin_panel'))
+
+            assign_hustler_permission_group(hustler_object=self,
+                                            permission_groups=REGULAR_HUSTLER_PERMISSIONS.get('groups'))
 
     @property
     def username(self):
