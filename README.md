@@ -6,7 +6,7 @@
 
 - [x] Adding knowledge store
 
-- [ ] Adding users
+- [x] Adding users
 
 - [ ] Adding users to knowledge store
 
