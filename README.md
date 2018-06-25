@@ -28,7 +28,7 @@
 
 - [x] Eager Loading for Serializers to prevent N+1 queries
 
-- [ ] Deploy on Heroku/PA
+- [x] Deploy on Heroku/PA
 
 - [ ] Export data in csv using admin actions
 
