@@ -32,7 +32,7 @@
 
 - [ ] [Try out PDB (pry alternate)](https://github.com/HassenPy/django-pdb) 
 
-- [ ] [Try out Django Watchment (for checking out services)](https://github.com/mwarkentin/django-watchman)
+- [ ] [Try out Django Watchman (for checking out services)](https://github.com/mwarkentin/django-watchman)
 
 - [ ] Export data in csv using admin actions
 
