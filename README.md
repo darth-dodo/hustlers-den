@@ -30,6 +30,8 @@
 
 - [x] Deploy on Heroku/PA
 
+- [ ] [Try out PDB (pry alternate)](https://github.com/HassenPy/django-pdb) 
+
 - [ ] Export data in csv using admin actions
 
 - [ ] Slack integration
