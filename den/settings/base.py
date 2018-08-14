@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import raven
 import datetime
 from django.core.exceptions import ImproperlyConfigured
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'raven.contrib.django.raven_compat', # installs a hook in Django that will automatically report uncaught exceptions.
 
     'rest_framework',
     'django_filters',
@@ -169,3 +171,11 @@ JET_THEMES = [
 
 JET_SIDE_MENU_COMPACT = True
 ADMIN_SITE_HEADER = "Hustlers Den"
+
+SENTRY_SECRET_KEY = get_env_variable('SENTRY_SECRET_KEY')
+SENTRY_PROJECT_ID = get_env_variable('SENTRY_PROJECT_ID')
+SENTRY_DSN = 'https://{0}@sentry.io/{1}'.format(SENTRY_SECRET_KEY, SENTRY_PROJECT_ID)
+
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN
+}
