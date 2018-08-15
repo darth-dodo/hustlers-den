@@ -15,17 +15,31 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class CategoryFormSerilaizer(CategorySerializer):
+    class Meta:
+        # model = Category
+        fields = ('id', 'name', )
 
 class MediaTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = MediaType
         fields = '__all__'
 
+class MediaTypeFormSerilaizer(serializers.ModelSerializer):
+    class Meta:
+        model = MediaType
+        fields = ('id', 'name', )
+
 
 class ExpertiseLevelSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExpertiseLevel
         fields = '__all__'
+
+class ExpertiseLevelFormSerilaizer(serializers.ModelSerializer):
+    class Meta:
+        model = ExpertiseLevel
+        fields = ('id', 'name', )
 
 
 class KnowledgeStoreSerializer(serializers.ModelSerializer, EagerLoadingSerializerMixin):
