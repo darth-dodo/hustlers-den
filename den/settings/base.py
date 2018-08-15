@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import raven
 import datetime
+from logging import config as logging_config
+
+from django.utils.log import DEFAULT_LOGGING
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -172,10 +175,80 @@ JET_THEMES = [
 JET_SIDE_MENU_COMPACT = True
 ADMIN_SITE_HEADER = "Hustlers Den"
 
-SENTRY_SECRET_KEY = get_env_variable('SENTRY_SECRET_KEY')
-SENTRY_PROJECT_ID = get_env_variable('SENTRY_PROJECT_ID')
-SENTRY_DSN = 'https://{0}@sentry.io/{1}'.format(SENTRY_SECRET_KEY, SENTRY_PROJECT_ID)
+# sentry only for product envs
+# https://github.com/getsentry/raven-python/issues/538#issuecomment-66835959
+RAVEN_CONFIG = dict()
 
-RAVEN_CONFIG = {
-    'dsn': SENTRY_DSN
-}
+# logging setup
+
+# Disable Django's logging setup
+LOGGING_CONFIG = None
+
+# logs to posted on console should be env specific
+ENV_LOG_LEVEL = get_env_variable('ENV_LOG_LEVEL').upper()
+
+# all logs including the level and above shall be posted to sentry
+SENTRY_LOG_LEVEL = get_env_variable('SENTRY_LOG_LEVEL').upper()
+
+logging_config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+    },
+    'handlers': {
+
+        # console logs to stderr
+        'console': {
+            'level': ENV_LOG_LEVEL,
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        },
+
+        # Add Handler for Sentry for `SENTRY_LOG_LEVEL` and above only for PROD env based on 
+        # RAVEN_CONFIG dsn dict
+
+        'sentry': {
+            'level': SENTRY_LOG_LEVEL,
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
+
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        
+        # default for all undefined Python modules
+        '': {
+            'level': SENTRY_LOG_LEVEL,
+            'handlers': ['console', 'sentry'],
+        },
+        
+        # Application code
+        'knowledge': {
+            'level': ENV_LOG_LEVEL,
+            'handlers': ['console', 'sentry'],
+            # Avoid double logging because of root logger
+            'propagate': False,
+        },
+        
+        'hustlers': {
+            'level': ENV_LOG_LEVEL,
+            'handlers': ['console', 'sentry'],
+            # Avoid double logging because of root logger
+            'propagate': False,
+        },
+
+        # Prevent noisy modules from logging to Sentry
+        'den': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        
+        # Default runserver request logging
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    },
+})
