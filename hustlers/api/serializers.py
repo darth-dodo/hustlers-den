@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from hustlers.models import Hustler
 from knowledge.api.serializers import CategorySerializer
 
@@ -12,6 +11,7 @@ class HustlerSerializer(serializers.ModelSerializer):
     Hustler model serializer using actual fields and properties to 
     get Django User specific data
     """
+    
     interests = CategorySerializer(many=True, read_only=True)
 
     class Meta:
