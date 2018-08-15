@@ -172,16 +172,30 @@ class KnowledgeStore(RowInformation):
     def __str__(self):
         return "{0}".format(self.name)
 
-def broadcast_resouce_published_message(sender, instance, **kwargs):
+def broadcast_resouce_published_message(sender, instance, action, **kwargs):
+    """
+    Every time a row is created in the through table between KnowledgeStore and Category
+    this signal will fire and publish itself on the broadcast network (Slack/Basecamp)
 
-        broadcast_message = instance.knowledge_store_published_message
-        logger.debug(broadcast_message.upper())
+    Currently, this event is being triggered even when post creation in the edit mode if we are 
+    adding more categories to a KnowledgeStore resource
+    """
+    # import code; code.interact(local=locals())
+    logger.debug(action)
 
-        try:
-            post_message_to_slack_channel(broadcast_message)
-        except Exception as e:
-            # handle this better
-            logger.error("Boardcasting services failed")
+    # different action types are post_add, pre_add, pre_remove, post_remove, pre_clear, post_clear
+    # https://docs.djangoproject.com/en/dev/ref/signals/#m2m-changed
+    if action != 'post_add':
+        return
+
+    broadcast_message = instance.knowledge_store_published_message
+    logger.debug(broadcast_message.upper())
+
+    try:
+        post_message_to_slack_channel(broadcast_message)
+    except Exception as e:
+        # handle this better
+        logger.error("Boardcasting services failed")
 
 
 m2m_changed.connect(broadcast_resouce_published_message, sender=KnowledgeStore.categories.through)
