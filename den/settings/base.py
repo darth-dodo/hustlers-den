@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # den apps
     'knowledge',
     'hustlers',
+    'integrations',
 
     #swagger app
     'rest_framework_swagger',
@@ -235,6 +236,13 @@ logging_config.dictConfig({
         },
         
         'hustlers': {
+            'level': ENV_LOG_LEVEL,
+            'handlers': ['console', 'sentry'],
+            # Avoid double logging because of root logger
+            'propagate': False,
+        },
+
+        'integrations': {
             'level': ENV_LOG_LEVEL,
             'handlers': ['console', 'sentry'],
             # Avoid double logging because of root logger

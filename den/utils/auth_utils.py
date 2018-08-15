@@ -1,16 +1,14 @@
 from django.core.exceptions import PermissionDenied
 from rest_framework_jwt.settings import api_settings
 
-from hustlers.api.serializers import HustlerSerializer
-
-
 def get_hustler_data(hustler_object):
     """
     Serializes a Hustler object for JSON
     :param hustler_object:  Hustler object
     :return: dict
     """
-
+    
+    from hustlers.api.serializers import HustlerSerializer
     serialized_hustler_data = HustlerSerializer(hustler_object).data
     return serialized_hustler_data
 

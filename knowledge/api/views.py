@@ -1,5 +1,10 @@
+import os
+import sys
+import logging
+
 # framework level libraries
 from rest_framework import viewsets
+from rest_framework import mixins
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -19,6 +24,7 @@ from knowledge.api.serializers import CategorySerializer, MediaTypeSerializer, E
 
 from knowledge.api.pagination import KnowledgeListPagination
 
+logger = logging.getLogger(__name__)
 
 class ReadOnlyKnowledgeAbstractViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -74,10 +80,30 @@ class ExpertiseLevelViewSet(ReadOnlyKnowledgeAbstractViewSet):
     queryset = ExpertiseLevel.objects.active()
 
 
-class KnowledgeStoreViewSet(ReadOnlyKnowledgeAbstractViewSet):
+class KnowledgeStoreViewSet(mixins.CreateModelMixin,
+                            mixins.ListModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
     """
     handles ViewSet for KnowledgeStore Serializer
+
+    sample post
+
+    {
+            "name": "test1", 
+            "media_type": 2,
+            "expertise_level": 2,
+            "categories": [1,5],
+            "url": "http://apples.com",
+            "description": "bananas"           
+    }
+    
     """
+    authentication_classes = [JSONWebTokenAuthentication,
+                              SessionAuthentication,
+                              BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     serializer_class = KnowledgeStoreSerializer
     filter_fields = ['id', 'name', 'slug']
     search_fields = ['name', 'slug']
@@ -88,4 +114,10 @@ class KnowledgeStoreViewSet(ReadOnlyKnowledgeAbstractViewSet):
 
     @eager_load
     def get_queryset(self):
+        logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
+
         return self.queryset_class.objects.active()
+
+    def perform_create(self, serializer):
+        logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
+        serializer.save(created_by=self.request.user.hustler)
