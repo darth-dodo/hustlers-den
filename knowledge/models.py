@@ -172,9 +172,9 @@ class KnowledgeStore(RowInformation):
     def __str__(self):
         return "{0}".format(self.name)
 
-def broadcast_resouce_published_message(sender, **kwargs):
+def broadcast_resouce_published_message(sender, instance, **kwargs):
 
-        broadcast_message = sender.knowledge_store_published_message
+        broadcast_message = instance.knowledge_store_published_message
         logger.debug(broadcast_message.upper())
 
         try:
