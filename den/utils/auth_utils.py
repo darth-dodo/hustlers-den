@@ -1,6 +1,10 @@
 from django.core.exceptions import PermissionDenied
 from rest_framework_jwt.settings import api_settings
 
+# binding.pry equivalent
+# import code; code.interact(local=locals())
+
+
 def get_hustler_data(hustler_object):
     """
     Serializes a Hustler object for JSON
