@@ -13,7 +13,8 @@ from django.dispatch import receiver
 # project level imports
 from den.utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
-from integrations.utils.slack_utils import post_message_to_slack_channel
+from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
+from integrations.constants import SLACK
 
 # app level imports
 from knowledge.managers import CategoryManager, KnowledgeStoreManager, MediaTypeManager, ExpertiseLevelManager
@@ -188,11 +189,15 @@ def broadcast_resouce_published_message(sender, instance, action, **kwargs):
     if action != 'post_add':
         return
 
-    broadcast_message = instance.knowledge_store_published_message
-    logger.debug(broadcast_message.upper())
+    # broadcast_message = instance.knowledge_store_published_message
+    # logger.debug(broadcast_message.upper())
+
+    resource_object_id = instance.id
+    logger.debug(resource_object_id)
 
     try:
-        post_message_to_slack_channel(broadcast_message)
+        trigger_knowledge_store_broadcast_activity(knowledge_store_object_id=resource_object_id,
+                                                   broadcast_channels=[SLACK])
     except Exception as e:
         # handle this better
         logger.error("Boardcasting services failed")

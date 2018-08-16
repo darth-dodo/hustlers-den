@@ -43,3 +43,11 @@ if True:
     # django debug toolbar allowed internal ips
     INTERNAL_IPS = ['127.0.0.1']
 
+# sentry configuration only for production env
+SENTRY_SECRET_KEY = get_env_variable('SENTRY_SECRET_KEY')
+SENTRY_PROJECT_ID = get_env_variable('SENTRY_PROJECT_ID')
+SENTRY_DSN = 'https://{0}@sentry.io/{1}'.format(SENTRY_SECRET_KEY, SENTRY_PROJECT_ID)
+
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN
+}
