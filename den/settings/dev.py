@@ -1,17 +1,27 @@
 from .base import *
+import dj_database_url
 
-DEBUG = True
+DEBUG = get_env_variable('DEBUG_MODE')
+HEROKU_MODE = get_env_variable('HEROKU_MODE')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_env_variable('DATABASE_NAME'),
-        'USER': get_env_variable('DATABASE_USER'),
-        'PASSWORD': get_env_variable('DATABASE_PASSWORD'),
-        # 'HOST': get_env_variable('DATABASE_HOST'),  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
-       }
-}
+if HEROKU_MODE:
+    # https://stackoverflow.com/a/26080380/10400264
+    DATABASE_URL = get_env_variable('DATABASE_URL')
+    DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
+
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': get_env_variable('DATABASE_NAME'),
+                'USER': get_env_variable('DATABASE_USER'),
+                'PASSWORD': get_env_variable('DATABASE_PASSWORD'),
+                'HOST': get_env_variable('DATABASE_HOST'),
+                'PORT': get_env_variable('DATABASE_PORT'),  # Set to empty string for default.
+               }
+    }
+
 
 # enable/disable qcount
 if True:
@@ -19,7 +29,7 @@ if True:
     MIDDLEWARE += [
                     'querycount.middleware.QueryCountMiddleware',
                 ]
-    
+
     QUERYCOUNT = {
         'THRESHOLDS': {
             'MEDIUM': 50,
