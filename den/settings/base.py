@@ -13,20 +13,34 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import raven
 import datetime
-from logging import config as logging_config
 
-from django.utils.log import DEFAULT_LOGGING
+from den.logging_configs.local import local_logging_config
+from den.logging_configs.heroku import heroku_logging_config
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def parse_bool(env_var):
+    list_of_truth = [True, 'true', 'True', 1, '1']
+    list_of_false = [False, 'false', 'False', 0, '0']
+
+    if env_var in list_of_truth:
+        return True
+    elif env_var in list_of_false:
+        return False
+    else:
+        return env_var
+
+
 def get_env_variable(var_name):
     try:
-        return os.environ[var_name]
+        env_var = os.environ[var_name]
+        return parse_bool(env_var)
     except KeyError:
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
+
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
@@ -181,82 +195,31 @@ ADMIN_SITE_HEADER = "Hustlers Den"
 RAVEN_CONFIG = dict()
 
 # logging setup
-
 # Disable Django's logging setup
 LOGGING_CONFIG = None
 
-# logs to posted on console should be env specific
-ENV_LOG_LEVEL = get_env_variable('ENV_LOG_LEVEL').upper()
+# logs folder location where the file rotated logs are stored
+LOG_ROOT = os.path.join(BASE_DIR, '..', 'logs')
 
-# all logs including the level and above shall be posted to sentry
-SENTRY_LOG_LEVEL = get_env_variable('SENTRY_LOG_LEVEL').upper()
+# application log level
+LOG_LEVEL = get_env_variable('ENV_LOG_LEVEL')
 
-logging_config.dictConfig({
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'default': {
-            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-        },
-        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
-    },
-    'handlers': {
+# separate log level for logging in Rotated file
+FILE_LOG_LEVEL = get_env_variable('FILE_LOG_LEVEL')
 
-        # console logs to stderr
-        'console': {
-            'level': ENV_LOG_LEVEL,
-            'class': 'logging.StreamHandler',
-            'formatter': 'default',
-        },
+# all logging including and above this level will be reported to Sentry
+# SENTRY_LOG_LEVEL = get_env_variable('SENTRY_LOG_LEVEL')
 
-        # Add Handler for Sentry for `SENTRY_LOG_LEVEL` and above only for PROD env based on 
-        # RAVEN_CONFIG dsn dict
 
-        'sentry': {
-            'level': SENTRY_LOG_LEVEL,
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
+# Python logging on sentry, console and in file
 
-        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
-    },
-    'loggers': {
-        
-        # default for all undefined Python modules
-        '': {
-            'level': SENTRY_LOG_LEVEL,
-            'handlers': ['console', 'sentry'],
-        },
-        
-        # Application code
-        'knowledge': {
-            'level': ENV_LOG_LEVEL,
-            'handlers': ['console', 'sentry'],
-            # Avoid double logging because of root logger
-            'propagate': False,
-        },
-        
-        'hustlers': {
-            'level': ENV_LOG_LEVEL,
-            'handlers': ['console', 'sentry'],
-            # Avoid double logging because of root logger
-            'propagate': False,
-        },
+logging_options = dict()
+logging_options['LOG_ROOT'] = LOG_ROOT
+logging_options['LOG_LEVEL'] = LOG_LEVEL
+logging_options['FILE_LOG_LEVEL'] = FILE_LOG_LEVEL
 
-        'integrations': {
-            'level': ENV_LOG_LEVEL,
-            'handlers': ['console', 'sentry'],
-            # Avoid double logging because of root logger
-            'propagate': False,
-        },
+if get_env_variable('LOCAL_LOGGING'):
+    local_logging_config(**logging_options)
 
-        # Prevent noisy modules from logging to Sentry
-        'den': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        
-        # Default runserver request logging
-        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
-    },
-})
+else:
+    heroku_logging_config(**logging_options)
