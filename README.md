@@ -13,7 +13,7 @@
 - [Future Scope](#future-scope)
 
 ## Summary
-Hustlers Den is a knowledge resource aggregation platform. The motivation to build this project was to ease out the process of sharing educational resources amongst a team as compared to the alternative of messages getting lost in the wild while using Slack channels. The project is built using [Django](https://www.djangoproject.com/) and [Django Rest Framework](https://www.django-rest-framework.org/). The API documentation is done using [Swagger Documentation](https://hustlers-den.herokuapp.com/swagger-docs/).
+[Hustlers Den](https://hustlers-den.herokuapp.com/) is a knowledge resource aggregation platform. The motivation to build this project was to ease out the process of sharing educational resources amongst a team as compared to the alternative of messages getting lost in the wild while using Slack channels. The project is built using [Django](https://www.djangoproject.com/) and [Django Rest Framework](https://www.django-rest-framework.org/). The API documentation is done using [Swagger Documentation](https://hustlers-den.herokuapp.com/swagger-docs/).
 
 In case of any questions, queries or suggestions please reach out to [@darth-dodo](https://github.com/darth-dodo).
 
@@ -37,7 +37,7 @@ Cheers!
 - Use the above credentials to log into the admin panel
 
 ## Demo
-- The Backend sandbox can be accessed using Django Admin Panel and [Jet](https://github.com/activeadmin/activeadmin) at [https://hustlers-den.herokuapp.com/](https://hustlers-den.herokuapp.com/) with the following credentials:
+- The Backend sandbox can be accessed using Django Admin Panel and [Jet](https://github.com/geex-arts/django-jet) at [https://hustlers-den.herokuapp.com/](https://hustlers-den.herokuapp.com/) with the following credentials:
   - Username: admin@hden.com
   - password: `sharing-is-caring`
 
