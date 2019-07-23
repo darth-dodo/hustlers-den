@@ -62,6 +62,7 @@ gunicorn = "*"
 whitenoise = "*"
 django-heroku = "*"
 psycopg2 = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.7"
