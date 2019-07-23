@@ -18,8 +18,8 @@ Hustlers Den is a knowledge resource aggregation platform. The motivation to bui
 In case of any questions, queries or suggestions please reach out to [@darth-dodo](https://github.com/darth-dodo).
 
 Cheers!
-![librarian](https://media.giphy.com/media/l0HlMEi55YsfXyzMk/source.gif)
 
+![librarian](https://media.giphy.com/media/l0HlMEi55YsfXyzMk/source.gif)
 --
 
 ## Installation
