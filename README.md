@@ -1,4 +1,4 @@
-# Hustlers Den
+# Hustlers Den - Knowledge Resource Aggregator for Teams
 
 ![knowledge](https://media.giphy.com/media/TI32JwHmWQEi4/giphy.gif)
 
