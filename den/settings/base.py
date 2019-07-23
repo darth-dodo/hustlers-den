@@ -48,7 +48,6 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'django_extensions',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,22 +55,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'raven.contrib.django.raven_compat', # installs a hook in Django that will automatically report uncaught exceptions.
 
+    # third party apps
     'rest_framework',
     'django_filters',
-
-    # den apps
-    'knowledge',
-    'hustlers',
-    'integrations',
-
+    'django_extensions',
+    # installs a hook in Django that will automatically report uncaught exceptions.
+    'raven.contrib.django.raven_compat',
     #swagger app
     'rest_framework_swagger',
 ]
 
+PROJECT_APPS = [
+    'knowledge',
+    'hustlers',
+    'integrations',
+]
+
+INSTALLED_APPS += PROJECT_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,6 +134,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': (
+            'django_filters.rest_framework.DjangoFilterBackend',
+        ),
 }
 
 JWT_AUTH = {
@@ -150,8 +158,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 JET_THEMES = [
