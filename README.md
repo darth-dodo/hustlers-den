@@ -31,7 +31,7 @@ Cheers!
 - Run `pipenv install`
 - Activate the virtualenv using `pipenv shell`
 - Create development Postgres Database using the command `createdb den_db` as mentioned in the `den/settings/dev.py`
-- Create a superuser using the command `python manage createsuperuser`
+- Create a superuser using the command `python manage.py createsuperuser`
 - Run the local server using the command `python manage.py runserver`
 - Hop on to the site and go to `<your-localhost-with-port>/admin`
 - Use the above credentials to log into the admin panel
@@ -56,6 +56,7 @@ Cheers!
 - [ ] Using custom querysets
 - [ ] Custom Middleware for Error Handler
 - [ ] Base Service Class for MVSC approach
+- [ ] Auto assign user permissions
 
 ## Feature Roadmap
 
