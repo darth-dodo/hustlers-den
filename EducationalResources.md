@@ -26,6 +26,7 @@
 - https://simpleisbetterthancomplex.com/tutorial/2016/07/18/how-to-create-a-custom-django-middleware.html
 - https://www.zeolearn.com/magazine/what-are-middlewares
 - https://stackoverflow.com/questions/18322262/how-to-set-up-custom-middleware-in-django
+- https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html
 
 
 
