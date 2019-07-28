@@ -62,13 +62,6 @@ $ psql -U <user> or $ psql postgres
 - The [Educational Resources](https://github.com/darth-dodo/hustlers-den/blob/master/EducationalResources.md) file is a place we have listed down the resources we referred to while working on this project for giving a deeper context and through learning to the reader if required.
 
 
-
-## ToDos
-- [x] Add more docstrings application wide
-- [x] Create a list of Educational Resources
-- [x] [Custom Middleware for Error Handler](https://github.com/darth-dodo/hustlers-den/pull/23)
-- [ ] Auto assign user permissions
-
 ## Feature Roadmap
 
 - [x] Setting up django project
@@ -85,7 +78,11 @@ $ psql -U <user> or $ psql postgres
 - [x] [Django Debug Toolbar, Query Count Middlewares and Django Power Shell for efficient debugging](https://github.com/darth-dodo/hustlers-den/pull/11)
 - [x] Eager Loading for Serializers to prevent N+1 queries
 - [x] Deploy on Heroku/PA
-- [ ] Implement Django Management Commands for generation seed database
+- [x] Add more docstrings application wide
+- [x] Create a list of Educational Resources
+- [x] [Custom Middleware for Error Handler](https://github.com/darth-dodo/hustlers-den/pull/23)
+- [x] Auto assign user permissions
+- [x] [Implement Django Management Commands for generation seed database]()
 - [ ] Implement Celery Integration for resetting the Sandbox Database every 24 hours
 - [ ] Knowledge Packets module
 - [ ] Base Service Class for MVCS approach
