@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^', admin.site.urls),
     url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^auth/login/$', obtain_jwt_token),
-    # url(r'^knowledge/api/', include('knowledge.api.urls')),
     url(r'^api/knowledge/', include('knowledge.api.urls')),
     url(r'^api/integrations/', include('integrations.api.urls')),
     path(r'docs/', include_docs_urls(title='Hustlers Den API')),
