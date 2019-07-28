@@ -26,6 +26,7 @@ from knowledge.api.pagination import KnowledgeListPagination
 
 logger = logging.getLogger(__name__)
 
+
 class ReadOnlyKnowledgeAbstractViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Abstract Parent Readonly ViewSet

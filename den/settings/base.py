@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # installs a hook in Django that will automatically report uncaught exceptions.
     'raven.contrib.django.raven_compat',
+
     #swagger app
     'rest_framework_swagger',
 ]
@@ -201,10 +202,6 @@ JET_THEMES = [
 JET_SIDE_MENU_COMPACT = True
 ADMIN_SITE_HEADER = "Hustlers Den"
 
-# sentry only for product envs
-# https://github.com/getsentry/raven-python/issues/538#issuecomment-66835959
-RAVEN_CONFIG = dict()
-
 # logging setup
 # Disable Django's logging setup
 LOGGING_CONFIG = None
@@ -219,7 +216,7 @@ LOG_LEVEL = get_env_variable('ENV_LOG_LEVEL')
 FILE_LOG_LEVEL = get_env_variable('FILE_LOG_LEVEL')
 
 # all logging including and above this level will be reported to Sentry
-# SENTRY_LOG_LEVEL = get_env_variable('SENTRY_LOG_LEVEL')
+SENTRY_LOG_LEVEL = get_env_variable('SENTRY_LOG_LEVEL')
 
 
 # Python logging on sentry, console and in file
@@ -228,6 +225,7 @@ logging_options = dict()
 logging_options['LOG_ROOT'] = LOG_ROOT
 logging_options['LOG_LEVEL'] = LOG_LEVEL
 logging_options['FILE_LOG_LEVEL'] = FILE_LOG_LEVEL
+logging_options['SENTRY_LOG_LEVEL'] = SENTRY_LOG_LEVEL
 
 if get_env_variable('LOCAL_LOGGING'):
     local_logging_config(**logging_options)

@@ -30,7 +30,19 @@ Cheers!
 - Use [Pyenv](https://github.com/pyenv/pyenv) to install and set Python to version 3.7.x
 - Run `pipenv install`
 - Activate the virtualenv using `pipenv shell`
-- Create development Postgres Database using the command `createdb den_db` as mentioned in the `den/settings/dev.py`
+- Create development Postgres Database using the command `createdb den_db` and permissions for user as mentioned in the `den/settings/dev.py` eg.
+```
+$ createdb den_db
+
+$ psql -U <user> or $ psql postgres
+
+# CREATE ROLE den_app WITH LOGIN PASSWORD 'your-awesome-password';
+
+# GRANT ALL PRIVILEGES ON DATABASE den_db TO den_app;
+
+# \q
+```
+
 - Create a superuser using the command `python manage.py createsuperuser`
 - Run the local server using the command `python manage.py runserver`
 - Hop on to the site and go to `<your-localhost-with-port>/admin`
@@ -46,16 +58,18 @@ Cheers!
 - [Interactive API Documentation generated using Swagger can be found here](https://hustlers-den.herokuapp.com/swagger-docs)
 
 ## Educational Resources
-- TBD
+- While working on anything, we tend to come across educational resources which help us in getting better and understanding a problem as well as it's solution on a deeper level
+- The [Educational Resources](https://github.com/darth-dodo/hustlers-den/blob/master/EducationalResources.md) file is a place we have listed down the resources we referred to while working on this project for giving a deeper context and through learning to the reader if required.
+
 
 
 ## ToDos
-- [ ] Add more docstrings application wide
-- [ ] Create a list of Educational Resources
+- [x] Add more docstrings application wide
+- [x] Create a list of Educational Resources
 - [ ] Seed data script
 - [ ] Using custom querysets
 - [ ] Custom Middleware for Error Handler
-- [ ] Base Service Class for MVSC approach
+- [ ] Base Service Class for MVCS approach
 - [ ] Auto assign user permissions
 
 ## Feature Roadmap
