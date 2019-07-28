@@ -52,19 +52,25 @@ def local_logging_config(**options):
                 'handlers': ['console', 'sentry', 'file'],
             },
             # Our application code
-            'thammbi_utils': {
+            'utils': {
                 'level': log_level,
                 'handlers': ['console', 'sentry', 'file'],
                 # Avoid double logging because of root logger
                 'propagate': False,
             },
-            'thammbi': {
+            'knowledge': {
                 'level': log_level,
                 'handlers': ['console', 'sentry', 'file'],
                 # Avoid double logging because of root logger
                 'propagate': False,
             },
-            'member': {
+            'hustlers': {
+                'level': log_level,
+                'handlers': ['console', 'sentry', 'file'],
+                # Avoid double logging because of root logger
+                'propagate': False,
+            },
+            'integration': {
                 'level': log_level,
                 'handlers': ['console', 'sentry', 'file'],
                 # Avoid double logging because of root logger
