@@ -23,6 +23,7 @@ from knowledge.managers import CategoryManager, KnowledgeStoreManager, MediaType
 
 logger = logging.getLogger(__name__)
 
+
 class Category(RowInformation):
     """
     database, python, django, rails ,flask etc
@@ -42,7 +43,6 @@ class Category(RowInformation):
         verbose_name_plural = 'categories'
 
     def save(self, *args, **kwargs):
-        self.name = self.name.title()
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
@@ -68,7 +68,6 @@ class MediaType(RowInformation):
         db_table = 'media_type'
 
     def save(self, *args, **kwargs):
-        self.name = self.name.title()
         self.slug = slugify(self.name)
         super(MediaType, self).save(*args, **kwargs)
 
@@ -96,7 +95,6 @@ class ExpertiseLevel(RowInformation):
         db_table = 'expertise_level'
 
     def save(self, *args, **kwargs):
-        self.name = self.name.title()
         self.slug = slugify(self.name)
         super(ExpertiseLevel, self).save(*args, **kwargs)
 
@@ -142,7 +140,6 @@ class KnowledgeStore(RowInformation):
         db_table = 'knowledge_store'
 
     def save(self, *args, **kwargs):
-        self.name = self.name.capitalize()
         self.slug = custom_slugify(self.name, offset=30)
         super(KnowledgeStore, self).save(*args, **kwargs)
 
@@ -168,10 +165,9 @@ class KnowledgeStore(RowInformation):
 
         return message
 
-
-
     def __str__(self):
         return "{0}".format(self.name)
+
 
 def broadcast_resouce_published_message(sender, instance, action, **kwargs):
     """
