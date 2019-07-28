@@ -66,10 +66,7 @@ $ psql -U <user> or $ psql postgres
 ## ToDos
 - [x] Add more docstrings application wide
 - [x] Create a list of Educational Resources
-- [ ] Seed data script
-- [ ] Using custom querysets
-- [ ] Custom Middleware for Error Handler
-- [ ] Base Service Class for MVCS approach
+- [x] [Custom Middleware for Error Handler](https://github.com/darth-dodo/hustlers-den/pull/23)
 - [ ] Auto assign user permissions
 
 ## Feature Roadmap
@@ -90,10 +87,11 @@ $ psql -U <user> or $ psql postgres
 - [x] Deploy on Heroku/PA
 - [ ] Implement Django Management Commands for generation seed database
 - [ ] Implement Celery Integration for resetting the Sandbox Database every 24 hours
+- [ ] Knowledge Packets module
+- [ ] Base Service Class for MVCS approach
 - [ ] Hustler Sign up via REST api
 - [ ] Hustler Activation flow via Admin Panel and REST API
 - [ ] Discussion module
-- [ ] Knowledge Packets module
 - [ ] [Try out Django Watchman (for checking out services)](https://github.com/mwarkentin/django-watchman)
 
 

@@ -69,6 +69,12 @@ def heroku_logging_config(**options):
                 # Avoid double logging because of root logger
                 'propagate': False,
             },
+            'utils': {
+                'level': log_level,
+                'handlers': ['console', 'sentry'],
+                # Avoid double logging because of root logger
+                'propagate': False,
+            },
             # # Prevent noisy modules from logging to Sentry
             # 'noisy_module': {
             #     'level': 'ERROR',

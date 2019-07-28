@@ -71,6 +71,7 @@ PROJECT_APPS = [
     'knowledge',
     'hustlers',
     'integrations',
+    'utils',
 ]
 
 INSTALLED_APPS += PROJECT_APPS
@@ -84,6 +85,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # project
+    'utils.custom_error_handlers.HustlersDenExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'den.urls'
