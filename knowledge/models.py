@@ -13,6 +13,7 @@ from django.dispatch import receiver
 # project level imports
 from den.utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
+from knowledge.utils.knowledge_store_utils import generate_knowledge_store_published_message
 from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
 from integrations.constants import SLACK
 
@@ -145,36 +146,38 @@ class KnowledgeStore(RowInformation):
 
     @property
     def knowledge_store_published_message(self):
-        obj = KnowledgeStore.objects.get(id=self.id)
-        hustler_name = obj.created_by.first_name if obj.created_by.first_name else obj.created_by.email
-        resource_name = obj.name
-        resource_url = obj.url
-        categories = list(obj.categories.values_list('name', flat=True))
-
-        message = "{0}".format(resource_name)
-
-        if resource_url:
-            message = "{0} ({1})".format(message, resource_url)
-
-        if categories:
-            categories_str = ', '.join(categories)
-            message = "{0} across categories *{1}*".format(message, categories_str)
-
-        if hustler_name:
-            message = "{0} has been posted by {1}".format(message, hustler_name)
-
-        return message
+        return generate_knowledge_store_published_message(self)
 
     def __str__(self):
         return "{0}".format(self.name)
 
 
-def broadcast_resouce_published_message(sender, instance, action, **kwargs):
+class Packet(RowInformation):
+    """
+    Helps Users create bundles or packets of knowledge resources
+    """
+    name = models.CharField(max_length=100, blank=False, null=False)
+    slug = models.CharField(max_length=100, null=True, blank=True)
+    resources = models.ManyToManyField(to=KnowledgeStore, related_name='packet')
+    created_by = models.ForeignKey(to=Hustler, related_name='packet', on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        db_table = 'packet'
+
+    def save(self, *args, **kwargs):
+        self.slug = custom_slugify(self.name, offset=30)
+        super(Packet, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return "{0}".format(self.name)
+
+
+def broadcast_resource_published_message(sender, instance, action, **kwargs):
     """
     Every time a row is created in the through table between KnowledgeStore and Category
     this signal will fire and publish itself on the broadcast network (Slack/Basecamp)
 
-    Currently, this event is being triggered even when post creation in the edit mode if we are 
+    Currently, this event is being triggered even when post creation in the edit mode if we are
     adding more categories to a KnowledgeStore resource
     """
     # import code; code.interact(local=locals())
@@ -199,4 +202,4 @@ def broadcast_resouce_published_message(sender, instance, action, **kwargs):
         logger.error("Boardcasting services failed")
 
 
-m2m_changed.connect(broadcast_resouce_published_message, sender=KnowledgeStore.categories.through)
+m2m_changed.connect(broadcast_resource_published_message, sender=KnowledgeStore.categories.through)
