@@ -31,17 +31,12 @@ Cheers!
 - Run `pipenv install`
 - Activate the virtualenv using `pipenv shell`
 - Create development Postgres Database using the command `createdb den_db` and permissions for user as mentioned in the `den/settings/dev.py` eg.
-```
-$ createdb den_db
+    - `$ createdb den_db`
+    - `$ psql -U <user> or $ psql postgres`
+    - `# CREATE ROLE den_app WITH LOGIN PASSWORD 'your-awesome-password';`
+    - `# GRANT ALL PRIVILEGES ON DATABASE den_db TO den_app;`
+    - `# \q`
 
-$ psql -U <user> or $ psql postgres
-
-# CREATE ROLE den_app WITH LOGIN PASSWORD 'your-awesome-password';
-
-# GRANT ALL PRIVILEGES ON DATABASE den_db TO den_app;
-
-# \q
-```
 
 - Create a superuser using the command `python manage.py createsuperuser`
 - Run the local server using the command `python manage.py runserver`
@@ -82,14 +77,15 @@ $ psql -U <user> or $ psql postgres
 - [x] Create a list of Educational Resources
 - [x] [Custom Middleware for Error Handler](https://github.com/darth-dodo/hustlers-den/pull/23)
 - [x] Auto assign user permissions
-- [x] [Implement Django Management Commands for generation seed database]()
+- [x] [Implement Django Management Commands for generation seed database](https://github.com/darth-dodo/hustlers-den/pull/24)
+- [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [ ] Implement Celery Integration for resetting the Sandbox Database every 24 hours
-- [ ] Knowledge Packets module
 - [ ] Base Service Class for MVCS approach
 - [ ] Hustler Sign up via REST api
 - [ ] Hustler Activation flow via Admin Panel and REST API
 - [ ] Discussion module
-- [ ] [Try out Django Watchman (for checking out services)](https://github.com/mwarkentin/django-watchman)
+- [ ] Test Cases
+- [ ] [Try out Django Watchman (for checking out system monitoring)](https://github.com/mwarkentin/django-watchman)
 
 
 ## Future Scope

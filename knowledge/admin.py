@@ -4,7 +4,7 @@ from django.contrib import admin
 from jet.admin import CompactInline
 from django.utils.html import format_html
 
-from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
+from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType, Packet
 
 from hustlers.models import Hustler
 
@@ -16,8 +16,17 @@ class CategoriesInline(CompactInline):
     can_delete = False
 
 
+class KnowledgeStoresInline(CompactInline):
+    model = KnowledgeStore
+    can_delete = False
+
+
 class KnowledgeStoreCategoriesInline(CategoriesInline):
     model = KnowledgeStore.categories.through
+
+
+class KnowledgeStorePacketsInline(KnowledgeStoresInline):
+    model = Packet.resources.through
 
 
 class KnowledgeStoreInline(CompactInline):
@@ -168,3 +177,36 @@ class ExpertiseLevelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ExpertiseLevel, ExpertiseLevelAdmin)
+
+
+class PacketsAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'name', 'slug', 'created_by')
+    search_fields = ['name', 'slug']
+    list_display_links = ['__str__']
+    readonly_fields = ('slug',)
+    list_select_related = ['created_by']
+
+    inlines = [KnowledgeStorePacketsInline]
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            custom_readonly_fields = ('created_by',)
+            return self.readonly_fields + custom_readonly_fields
+        return self.readonly_fields
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+
+        # TODO optimize this
+        if db_field.name == 'created_by':
+            requester_django_user = request.user
+            kwargs['initial'] = requester_django_user.hustler if hasattr(requester_django_user, 'hustler') else None
+            kwargs['queryset'] = Hustler.objects.filter(django_user=requester_django_user)
+            return db_field.formfield(**kwargs)
+
+        return super(PacketsAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+    class Meta:
+        model = Packet
+
+
+admin.site.register(Packet, PacketsAdmin)
