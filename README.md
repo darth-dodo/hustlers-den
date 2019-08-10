@@ -79,7 +79,16 @@ Cheers!
 - [x] Auto assign user permissions
 - [x] [Implement Django Management Commands for generation seed database](https://github.com/darth-dodo/hustlers-den/pull/24)
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
-- [ ] Implement Celery Integration for resetting the Sandbox Database every 24 hours
+- [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
+- [ ] Weekly Newsletter implementation
+    - [ ] Integrate Sendgrid
+    - [ ] Weekly emails based on User interests
+    - [ ] User preferences/settings
+    - [ ] Create newletter template
+- [ ] Slack Bot
+    - [ ] Custom Slack App
+    - [ ] Explore Dialogs for adding resources
+    - [ ] Publish Slack bot
 - [ ] Base Service Class for MVCS approach
 - [ ] Hustler Sign up via REST api
 - [ ] Hustler Activation flow via Admin Panel and REST API
@@ -89,8 +98,6 @@ Cheers!
 
 
 ## Future Scope
-- [ ] Weekly Newsletter implementation
-- [ ] Slack Bot
 - [ ] Browser extension to add resources
 - [ ] Custom roles and permissions
 - [ ] Light Weight Dashboard
