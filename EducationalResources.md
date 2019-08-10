@@ -33,7 +33,7 @@
 - https://docs.celeryproject.org/en/latest/django/first-steps-with-django.html#using-celery-with-django
 - https://realpython.com/asynchronous-tasks-with-django-and-celery/
 - https://stackoverflow.com/questions/16176533/celery-tries-to-connect-to-the-wrong-broker
-- https://devcenter.heroku.com/articles/celery-heroku
+- https://devcenter.heroku.com/articles/celery-heroku   
 
 
 
