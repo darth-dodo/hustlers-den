@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     # installs a hook in Django that will automatically report uncaught exceptions.
     'raven.contrib.django.raven_compat',
 
+    'django_celery_beat',
+
     #swagger app
     'rest_framework_swagger',
 ]
@@ -236,3 +238,12 @@ if get_env_variable('LOCAL_LOGGING'):
 
 else:
     heroku_logging_config(**logging_options)
+
+
+# celery configuration
+CELERY_BROKER_URL = get_env_variable('CELERY_RESULT_BACKEND')
+CELERY_RESULT_BACKEND = get_env_variable('CELERY_BROKER_URL')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
