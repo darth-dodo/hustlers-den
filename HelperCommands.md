@@ -7,3 +7,7 @@ celery -A den worker -l info
 ```
 celery -A den beat -l info
 ```
+- Run Celery Beat with Database Scheduler
+```
+celery -A den beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+```
