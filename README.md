@@ -80,7 +80,7 @@ Cheers!
 - [x] [Implement Django Management Commands for generation seed database](https://github.com/darth-dodo/hustlers-den/pull/24)
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
-- [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/28)
+- [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/29)
 - [ ] Weekly Newsletter implementation
     - [ ] Integrate Sendgrid
     - [ ] Weekly emails based on User interests
