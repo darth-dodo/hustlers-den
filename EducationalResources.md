@@ -11,6 +11,14 @@
 - https://charlesleifer.com/blog/shortcomings-in-the-django-orm-and-a-look-at-peewee-a-lightweight-alternative/
 - https://simpleisbetterthancomplex.com/tips/2016/08/16/django-tip-11-custom-manager-with-chainable-querysets.html
 
+# Services
+- https://sunscrapers.com/blog/where-to-put-business-logic-django/#Idea_3_Services
+- https://mitchel.me/2017/django-service-objects/
+- http://www.itmaybeahack.com/homepage/iblog/architecture/C412398194/E20080401060105/index.html
+- https://stackoverflow.com/questions/12578908/separation-of-business-logic-and-data-access-in-django
+- https://medium.com/easyread/python-django-service-object-ddd-cc8ca6b88e35
+- https://medium.com/selleo/essential-rubyonrails-patterns-part-1-service-objects-1af9f9573ca1
+
 
 # DRF
 - http://www.cdrf.co/
@@ -36,4 +44,9 @@
 - https://devcenter.heroku.com/articles/celery-heroku   
 
 
-
+# Classical OOP and Python
+- https://realpython.com/python-super/
+- https://www.pythonforbeginners.com/super/working-python-super-function
+- https://rhettinger.wordpress.com/2011/05/26/super-considered-super/
+- https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance
+- https://www.machinelearningplus.com/python/python-property/
