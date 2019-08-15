@@ -80,6 +80,7 @@ Cheers!
 - [x] [Implement Django Management Commands for generation seed database](https://github.com/darth-dodo/hustlers-den/pull/24)
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
+- [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/28)
 - [ ] Weekly Newsletter implementation
     - [ ] Integrate Sendgrid
     - [ ] Weekly emails based on User interests
@@ -89,11 +90,12 @@ Cheers!
     - [ ] Custom Slack App
     - [ ] Explore Dialogs for adding resources
     - [ ] Publish Slack bot
-- [ ] Base Service Class for MVCS approach
 - [ ] Hustler Sign up via REST api
 - [ ] Hustler Activation flow via Admin Panel and REST API
 - [ ] Discussion module
 - [ ] Test Cases
+  - [ ] Unit Tests
+  - [ ] Integration Tests
 - [ ] [Try out Django Watchman (for checking out system monitoring)](https://github.com/mwarkentin/django-watchman)
 
 
