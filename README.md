@@ -47,6 +47,7 @@ Cheers!
 - The Backend sandbox can be accessed using Django Admin Panel and [Jet](https://github.com/geex-arts/django-jet) at [https://hustlers-den.herokuapp.com/](https://hustlers-den.herokuapp.com/) with the following credentials:
   - Username: admin@hden.com
   - password: `sharing-is-caring`
+ - The Database Schema diagram can be found over [here](https://github.com/darth-dodo/hustlers-den/blob/master/hustlers-den-schema.png) 
 
 ## API Documentation
 - [Static API Documentation using the OpenAPI spec can be found over here](https://hustlers-den.herokuapp.com/docs)
@@ -81,11 +82,17 @@ Cheers!
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
 - [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/29)
+- [ ] Knowledge Resource creation and update using Model ViewSets 
+    - [ ] Only the creator can modify the his/her contributions
+    - [ ] SuperUsers can update anything
+- [ ] Audit trail or Django Simple History integration
+- [ ] Documentation about Base Service with usage example for Wiki
+- [ ] Documentation about Custom Middleware with usage example for Wiki
 - [ ] Weekly Newsletter implementation
     - [ ] Integrate Sendgrid
     - [ ] Weekly emails based on User interests
     - [ ] User preferences/settings
-    - [ ] Create newletter template
+    - [ ] Create newsletter template
 - [ ] Slack Bot
     - [ ] Custom Slack App
     - [ ] Explore Dialogs for adding resources
@@ -97,9 +104,11 @@ Cheers!
   - [ ] Unit Tests
   - [ ] Integration Tests
 - [ ] [Try out Django Watchman (for checking out system monitoring)](https://github.com/mwarkentin/django-watchman)
+- [ ] Add ElasticSearch and relevant search indexes to be consumed by the ViewSets
 
 
 ## Future Scope
+- [ ] Move the App to a Demo environment in a separate Heroku App using "Heroku Deploy" Button
 - [ ] Browser extension to add resources
 - [ ] Custom roles and permissions
 - [ ] Light Weight Dashboard
