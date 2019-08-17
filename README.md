@@ -85,6 +85,7 @@ Cheers!
 - [ ] Knowledge Resource creation and update using Model ViewSets 
     - [ ] Only the creator can modify the his/her contributions
     - [ ] SuperUsers can update anything
+    - [ ] Make an Abstract ViewSet
 - [ ] Audit trail or Django Simple History integration
 - [ ] Documentation about Base Service with usage example for Wiki
 - [ ] Documentation about Custom Middleware with usage example for Wiki

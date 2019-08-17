@@ -17,9 +17,3 @@ class HustlerSerializer(serializers.ModelSerializer):
         model = Hustler
         fields = ('interests', 'created_by', 'created_at',
                   'active', 'full_name', 'email', 'username', 'superuser_access')
-
-    @staticmethod
-    def get_superuser_access(obj):
-        return obj.django_user.is_superuser
-
-    superuser_access = serializers.SerializerMethodField(read_only=True)

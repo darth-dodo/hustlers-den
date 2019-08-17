@@ -54,9 +54,6 @@ class CategoryViewSet(ReadOnlyKnowledgeAbstractViewSet):
     search_fields = ['name', 'slug']
     queryset = Category.objects.all()
 
-    # def get_queryset(self):
-    #     return Category.objects.active()
-
 
 class MediaTypeViewSet(ReadOnlyKnowledgeAbstractViewSet):
     """
@@ -78,21 +75,27 @@ class ExpertiseLevelViewSet(ReadOnlyKnowledgeAbstractViewSet):
     queryset = ExpertiseLevel.objects.active()
 
 
+# ToDo: Create abstract viewset with serializer.save() for create and update
 class KnowledgeStoreViewSet(viewsets.ModelViewSet):
     """
     handles ViewSet for KnowledgeStore Serializer
 
     sample post
 
-    {
-            "name": "test1", 
-            "media_type": 2,
-            "expertise_level": 2,
-            "categories": [1,5],
-            "url": "http://apples.com",
-            "description": "bananas"           
-    }
-    
+            {
+                "media_type": 2,
+                "categories": [
+                    1,
+                    3,
+                    5,
+                    6
+                ],
+                "expertise_level": 1,
+                "name": "Python Basics",
+                "url": "https://learnpythonthehardway.org",
+                "description": "",
+                "difficulty_sort": 1
+            }
     """
     authentication_classes = [JSONWebTokenAuthentication,
                               SessionAuthentication,
@@ -119,4 +122,4 @@ class KnowledgeStoreViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-        serializer.save(updated_by=self.request.user.hustler)
+        serializer.save(modified_by=self.request.user.hustler)
