@@ -28,6 +28,7 @@
 - https://medium.com/backticks-tildes/lets-build-an-api-with-django-rest-framework-32fcf40231e5
 - https://www.vinta.com.br/blog/2018/django-rest-framework-read-write-serializers/
 - http://ses4j.github.io/2015/11/23/optimizing-slow-django-rest-framework-performance/
+- https://stackoverflow.com/questions/37777321/validating-a-foreign-key-field-in-a-serializer-django-rest-framework
 
 
 # Django Internals
