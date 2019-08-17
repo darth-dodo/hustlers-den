@@ -114,7 +114,8 @@ class KnowledgeStoreViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-        serializer.save(created_by=self.request.user.hustler)
+        hustler_obj = self.request.user.hustler
+        serializer.save(created_by=hustler_obj, modified_by=hustler_obj)
 
     def perform_update(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
