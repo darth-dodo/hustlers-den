@@ -1,10 +1,7 @@
-import os
-import sys
 import logging
 
 # framework level libraries
 from rest_framework import viewsets
-from rest_framework import mixins
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -13,7 +10,7 @@ from django_filters import rest_framework as filters
 
 
 # project level imports
-from den.utils.views_utils import eager_load
+from utils.views_utils import eager_load
 
 # app level imports
 from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
@@ -81,10 +78,7 @@ class ExpertiseLevelViewSet(ReadOnlyKnowledgeAbstractViewSet):
     queryset = ExpertiseLevel.objects.active()
 
 
-class KnowledgeStoreViewSet(mixins.CreateModelMixin,
-                            mixins.ListModelMixin,
-                            mixins.RetrieveModelMixin,
-                            viewsets.GenericViewSet):
+class KnowledgeStoreViewSet(viewsets.ModelViewSet):
     """
     handles ViewSet for KnowledgeStore Serializer
 
@@ -116,9 +110,12 @@ class KnowledgeStoreViewSet(mixins.CreateModelMixin,
     @eager_load
     def get_queryset(self):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-
         return self.queryset_class.objects.active()
 
     def perform_create(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
         serializer.save(created_by=self.request.user.hustler)
+
+    def perform_update(self, serializer):
+        logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
+        serializer.save(updated_by=self.request.user.hustler)
