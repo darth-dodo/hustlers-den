@@ -34,9 +34,10 @@ class HustlersDenValidationError(HustlersDenBaseException):
     """
     Custom Validation Error Exception
     """
-
     def __init__(self, message=DEFAULT_VALIDATION_ERROR.get('message'),
                  status_code=DEFAULT_VALIDATION_ERROR.get('status_code')):
+        logger.debug('Function %s with data %s', sys._getframe().f_code.co_name, locals())
+
         self.message = message
         self.status_code = status_code
         super(HustlersDenValidationError, self).__init__(message=message, status_code=status_code)

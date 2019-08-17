@@ -65,6 +65,7 @@ werkzeug = "*"
 celery = "*"
 redis = "*"
 django-celery-beat = "*"
+pygraphviz = "*"
 
 [requires]
 python_version = "3.7"

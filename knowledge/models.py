@@ -1,17 +1,13 @@
 # third party imports
-import os
 import logging
-import sys
 
 # django imports
 from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import m2m_changed
-from django.dispatch import receiver
-
 
 # project level imports
-from den.utils.model_utils import RowInformation, custom_slugify
+from utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
 from knowledge.utils.knowledge_store_utils import generate_knowledge_store_published_message
 from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
@@ -127,6 +123,11 @@ class KnowledgeStore(RowInformation):
 
     created_by = models.ForeignKey(to=Hustler,
                                    related_name='knowledge_store',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
+
+    modified_by = models.ForeignKey(to=Hustler,
+                                   related_name='knowledge_store_updated',
                                    on_delete=models.SET_NULL,
                                    null=True)
 
