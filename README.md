@@ -82,12 +82,14 @@ Cheers!
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
 - [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/29)
-- [x] Knowledge Resource creation and update using Model ViewSets 
+- [x] [Knowledge Resource creation and update using Model ViewSets and custom Permission Classes](https://github.com/darth-dodo/hustlers-den/pull/31) 
     - [x] Only the creator can modify the his/her contributions
     - [x] SuperUsers can update anything
     - [x] Custom Permission Class 
-    - [x] Make an Abstract ViewSet
+    - [x] Error Handling for custom Permission denied error exception
 - [ ] Hustler Sign up via REST api
+    - [x] Make an Abstract ViewSet for Hustler
+    - [ ] Model ViewSet for Hustler with Access Control
     - [ ] Service to create user, hustler and assign permissions
     - [ ] Integrate the service in endpoint
     - [ ] Endpoint can be anonymous and require user verification from super user
