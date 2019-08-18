@@ -82,10 +82,17 @@ Cheers!
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
 - [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/29)
-- [ ] Knowledge Resource creation and update using Model ViewSets 
-    - [ ] Only the creator can modify the his/her contributions
-    - [ ] SuperUsers can update anything
-    - [ ] Make an Abstract ViewSet
+- [x] Knowledge Resource creation and update using Model ViewSets 
+    - [x] Only the creator can modify the his/her contributions
+    - [x] SuperUsers can update anything
+    - [x] Custom Permission Class 
+    - [x] Make an Abstract ViewSet
+- [ ] Hustler Sign up via REST api
+    - [ ] Service to create user, hustler and assign permissions
+    - [ ] Integrate the service in endpoint
+    - [ ] Endpoint can be anonymous and require user verification from super user
+    - [ ] Endpoint can be consumed by super users for autoverified new user
+    - [ ] Adding `IsVerified` Permission to the viewsets
 - [ ] Audit trail or Django Simple History integration
 - [ ] Documentation about Base Service with usage example for Wiki
 - [ ] Documentation about Custom Middleware with usage example for Wiki
@@ -98,8 +105,6 @@ Cheers!
     - [ ] Custom Slack App
     - [ ] Explore Dialogs for adding resources
     - [ ] Publish Slack bot
-- [ ] Hustler Sign up via REST api
-- [ ] Hustler Activation flow via Admin Panel and REST API
 - [ ] Discussion module
 - [ ] Test Cases
   - [ ] Unit Tests

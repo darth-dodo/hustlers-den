@@ -1,3 +1,4 @@
+# third party
 import logging
 
 # framework level libraries
@@ -8,9 +9,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django_filters import rest_framework as filters
 
-
 # project level imports
 from utils.views_utils import eager_load
+from utils.permissions import IsOwnerOrSuperUser
 
 # app level imports
 from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
@@ -28,17 +29,18 @@ class ReadOnlyKnowledgeAbstractViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Abstract Parent Readonly ViewSet
     """
-    serializer_class = None
-    authentication_classes = [JSONWebTokenAuthentication,
-                              SessionAuthentication,
-                              BasicAuthentication]
+    authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
-    filter_backends = [filters.DjangoFilterBackend, SearchFilter, OrderingFilter]
+
+    queryset = None
+    serializer_class = None
     search_fields = []
+
+    filter_backends = [filters.DjangoFilterBackend, SearchFilter, OrderingFilter]
     filter_fields = []
     ordering_fields = []
     ordering = []
-    queryset = None
+
     pagination_class = KnowledgeListPagination
 
     class Meta:
@@ -97,10 +99,8 @@ class KnowledgeStoreViewSet(viewsets.ModelViewSet):
                 "difficulty_sort": 1
             }
     """
-    authentication_classes = [JSONWebTokenAuthentication,
-                              SessionAuthentication,
-                              BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated, IsOwnerOrSuperUser]
 
     serializer_class = KnowledgeStoreSerializer
     filter_fields = ['id', 'name', 'slug']
