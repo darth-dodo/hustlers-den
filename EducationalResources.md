@@ -28,6 +28,9 @@
 - https://medium.com/backticks-tildes/lets-build-an-api-with-django-rest-framework-32fcf40231e5
 - https://www.vinta.com.br/blog/2018/django-rest-framework-read-write-serializers/
 - http://ses4j.github.io/2015/11/23/optimizing-slow-django-rest-framework-performance/
+- https://stackoverflow.com/questions/37777321/validating-a-foreign-key-field-in-a-serializer-django-rest-framework
+- http://www.tomchristie.com/rest-framework-2-docs/tutorial/4-authentication-and-permissions
+- https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
 
 
 # Django Internals
@@ -50,3 +53,5 @@
 - https://rhettinger.wordpress.com/2011/05/26/super-considered-super/
 - https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance
 - https://www.machinelearningplus.com/python/python-property/
+- https://docs.python.org/3/library/collections.html#collections.namedtuple
+- 

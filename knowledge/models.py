@@ -1,17 +1,13 @@
 # third party imports
-import os
 import logging
-import sys
 
 # django imports
 from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import m2m_changed
-from django.dispatch import receiver
-
 
 # project level imports
-from den.utils.model_utils import RowInformation, custom_slugify
+from utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
 from knowledge.utils.knowledge_store_utils import generate_knowledge_store_published_message
 from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
@@ -110,29 +106,14 @@ class KnowledgeStore(RowInformation):
     name = models.CharField(max_length=100, blank=False, null=False)
     url = models.URLField(null=True, blank=True)
     description = models.TextField(blank=True)
-
-    # internal ordering for sorting resources instead knowledge store for a particular expertise level
     difficulty_sort = models.PositiveIntegerField(default=1)
-
-    # associations
-    expertise_level = models.ForeignKey(to=ExpertiseLevel,
-                                        related_name='knowledge_store',
-                                        on_delete=models.SET_NULL,
+    expertise_level = models.ForeignKey(to=ExpertiseLevel, related_name='knowledge_store', on_delete=models.SET_NULL,
                                         null=True)
-
-    media_type = models.ForeignKey(to=MediaType,
-                                   related_name='knowledge_store',
-                                   on_delete=models.SET_NULL,
-                                   null=True)
-
-    created_by = models.ForeignKey(to=Hustler,
-                                   related_name='knowledge_store',
-                                   on_delete=models.SET_NULL,
-                                   null=True)
-
-    categories = models.ManyToManyField(to=Category,
-                                        related_name='knowledge_store')
-
+    media_type = models.ForeignKey(to=MediaType, related_name='knowledge_store', on_delete=models.SET_NULL, null=True)
+    created_by = models.ForeignKey(to=Hustler, related_name='knowledge_store', on_delete=models.SET_NULL, null=True)
+    modified_by = models.ForeignKey(to=Hustler, related_name='knowledge_store_updated', on_delete=models.SET_NULL,
+                                    null=True)
+    categories = models.ManyToManyField(to=Category, related_name='knowledge_store')
     slug = models.CharField(max_length=100, null=True, blank=True)
 
     objects = KnowledgeStoreManager()

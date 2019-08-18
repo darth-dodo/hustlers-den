@@ -1,19 +1,17 @@
-import os
-import sys
+# third party
 import logging
 
 # framework level libraries
 from rest_framework import viewsets
-from rest_framework import mixins
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django_filters import rest_framework as filters
 
-
 # project level imports
-from den.utils.views_utils import eager_load
+from utils.views_utils import eager_load
+from utils.permissions import IsOwnerOrSuperUser
 
 # app level imports
 from knowledge.models import KnowledgeStore, Category, ExpertiseLevel, MediaType
@@ -31,17 +29,18 @@ class ReadOnlyKnowledgeAbstractViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Abstract Parent Readonly ViewSet
     """
-    serializer_class = None
-    authentication_classes = [JSONWebTokenAuthentication,
-                              SessionAuthentication,
-                              BasicAuthentication]
+    authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
-    filter_backends = [filters.DjangoFilterBackend, SearchFilter, OrderingFilter]
+
+    queryset = None
+    serializer_class = None
     search_fields = []
+
+    filter_backends = [filters.DjangoFilterBackend, SearchFilter, OrderingFilter]
     filter_fields = []
     ordering_fields = []
     ordering = []
-    queryset = None
+
     pagination_class = KnowledgeListPagination
 
     class Meta:
@@ -56,9 +55,6 @@ class CategoryViewSet(ReadOnlyKnowledgeAbstractViewSet):
     filter_fields = ['id', 'name', 'slug']
     search_fields = ['name', 'slug']
     queryset = Category.objects.all()
-
-    # def get_queryset(self):
-    #     return Category.objects.active()
 
 
 class MediaTypeViewSet(ReadOnlyKnowledgeAbstractViewSet):
@@ -81,29 +77,30 @@ class ExpertiseLevelViewSet(ReadOnlyKnowledgeAbstractViewSet):
     queryset = ExpertiseLevel.objects.active()
 
 
-class KnowledgeStoreViewSet(mixins.CreateModelMixin,
-                            mixins.ListModelMixin,
-                            mixins.RetrieveModelMixin,
-                            viewsets.GenericViewSet):
+# ToDo: Create abstract viewset with serializer.save() for create and update
+class KnowledgeStoreViewSet(viewsets.ModelViewSet):
     """
     handles ViewSet for KnowledgeStore Serializer
 
     sample post
 
-    {
-            "name": "test1", 
-            "media_type": 2,
-            "expertise_level": 2,
-            "categories": [1,5],
-            "url": "http://apples.com",
-            "description": "bananas"           
-    }
-    
+            {
+                "media_type": 2,
+                "categories": [
+                    1,
+                    3,
+                    5,
+                    6
+                ],
+                "expertise_level": 1,
+                "name": "Python Basics",
+                "url": "https://learnpythonthehardway.org",
+                "description": "",
+                "difficulty_sort": 1
+            }
     """
-    authentication_classes = [JSONWebTokenAuthentication,
-                              SessionAuthentication,
-                              BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated, IsOwnerOrSuperUser]
 
     serializer_class = KnowledgeStoreSerializer
     filter_fields = ['id', 'name', 'slug']
@@ -111,14 +108,19 @@ class KnowledgeStoreViewSet(mixins.CreateModelMixin,
     ordering_fields = ['created_at']
     ordering = ['-created_at']
     queryset_class = KnowledgeStore
-    queryset = queryset_class.objects.active()
+    queryset = queryset_class.objects.none()
 
     @eager_load
     def get_queryset(self):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-
-        return self.queryset_class.objects.active()
+        queryset = self.queryset_class.objects.active()
+        return queryset
 
     def perform_create(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-        serializer.save(created_by=self.request.user.hustler)
+        hustler_obj = self.request.user.hustler
+        serializer.save(created_by=hustler_obj, modified_by=hustler_obj)
+
+    def perform_update(self, serializer):
+        logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
+        serializer.save(modified_by=self.request.user.hustler)

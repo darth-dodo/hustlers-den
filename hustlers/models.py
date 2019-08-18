@@ -87,6 +87,10 @@ class Hustler(models.Model):
     def active(self):
         return '{0}'.format(self.django_user.is_active)
 
+    @property
+    def superuser_access(self):
+        return self.django_user.is_superuser
+
     def __str__(self):
         return "{0}".format(self.username)
 
