@@ -38,6 +38,7 @@
 - https://www.zeolearn.com/magazine/what-are-middlewares
 - https://stackoverflow.com/questions/18322262/how-to-set-up-custom-middleware-in-django
 - https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html
+- https://stackoverflow.com/a/49626193
 
 
 # Celery
@@ -54,4 +55,4 @@
 - https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance
 - https://www.machinelearningplus.com/python/python-property/
 - https://docs.python.org/3/library/collections.html#collections.namedtuple
-- 
+

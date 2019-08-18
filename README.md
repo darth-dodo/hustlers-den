@@ -89,7 +89,7 @@ Cheers!
     - [x] Error Handling for custom Permission denied error exception
 - [ ] Hustler Sign up via REST api
     - [x] Make an Abstract ViewSet for Hustler
-    - [ ] Model ViewSet for Hustler with Access Control
+    - [ ] ViewSet for Hustler with Access Control
     - [ ] Service to create user, hustler and assign permissions
     - [ ] Integrate the service in endpoint
     - [ ] Endpoint can be anonymous and require user verification from super user

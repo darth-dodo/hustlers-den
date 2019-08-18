@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^auth/login/$', obtain_jwt_token),
     url(r'^api/knowledge/', include('knowledge.api.urls')),
     url(r'^api/integrations/', include('integrations.api.urls')),
+    url(r'^api/hustlers/', include('hustlers.api.urls')),
     path(r'docs/', include_docs_urls(title='Hustlers Den API')),
     path(r'swagger-docs/', schema_view),
 ]
