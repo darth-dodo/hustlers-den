@@ -87,10 +87,10 @@ Cheers!
     - [x] SuperUsers can update anything
     - [x] Custom Permission Class 
     - [x] Error Handling for custom Permission denied error exception
-- [ ] Hustler Sign up via REST api
-    - [x] Make an Abstract ViewSet for Hustler
-    - [ ] ViewSet for Hustler with Access Control
-    - [ ] Service to create user, hustler and assign permissions
+- [ ] [Hustler Sign up via REST api](https://github.com/darth-dodo/hustlers-den/tree/epic/user-management)
+    - [x] [Make an Abstract ViewSet for Hustler](https://github.com/darth-dodo/hustlers-den/pull/31)
+    - [x] [ViewSet for Hustler with Access Control](https://github.com/darth-dodo/hustlers-den/pull/33)
+    - [ ] Service to create django user, hustler and assign permissions group
     - [ ] Integrate the service in endpoint
     - [ ] Endpoint can be anonymous and require user verification from super user
     - [ ] Endpoint can be consumed by super users for autoverified new user
