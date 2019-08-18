@@ -50,8 +50,9 @@ Cheers!
  - The Database Schema diagram can be found over [here](https://github.com/darth-dodo/hustlers-den/blob/master/hustlers-den-schema.png) 
 
 ## API Documentation
-- [Static API Documentation using the OpenAPI spec can be found over here](https://hustlers-den.herokuapp.com/docs)
 - [Interactive API Documentation generated using Swagger can be found here](https://hustlers-den.herokuapp.com/swagger-docs)
+- [Static API Documentation using the OpenAPI spec can be found over here](https://hustlers-den.herokuapp.com/docs)
+- [Work in Progress Postman Documentation](https://documenter.getpostman.com/view/8196826/SVfGzCGo?version=latest)
 
 ## Educational Resources
 - While working on anything, we tend to come across educational resources which help us in getting better and understanding a problem as well as it's solution on a deeper level
