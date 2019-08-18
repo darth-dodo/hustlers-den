@@ -108,12 +108,13 @@ class KnowledgeStoreViewSet(viewsets.ModelViewSet):
     ordering_fields = ['created_at']
     ordering = ['-created_at']
     queryset_class = KnowledgeStore
-    queryset = queryset_class.objects.active()
+    queryset = queryset_class.objects.none()
 
     @eager_load
     def get_queryset(self):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))
-        return self.queryset_class.objects.active()
+        queryset = self.queryset_class.objects.active()
+        return queryset
 
     def perform_create(self, serializer):
         logger.debug('Data: {0} | User: {1}'.format(self.request.data, self.request.user))

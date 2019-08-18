@@ -82,7 +82,7 @@ Cheers!
 - [x] [Knowledge Packets module]((https://github.com/darth-dodo/hustlers-den/pull/25))
 - [x] [Implement Celery Integration](https://github.com/darth-dodo/hustlers-den/pull/26) for resetting the Sandbox Database every 24 hours
 - [x] [Base Service Class for MVCS approach](https://github.com/darth-dodo/hustlers-den/pull/29)
-- [x] [Knowledge Resource creation and update using Model ViewSets and custom Permission Classes](https://github.com/darth-dodo/hustlers-den/pull/31) 
+- [x] [Knowledge Resource creation and update using Model ViewSets and custom Permission Classes](https://github.com/darth-dodo/hustlers-den/pull/32) 
     - [x] Only the creator can modify the his/her contributions
     - [x] SuperUsers can update anything
     - [x] Custom Permission Class 

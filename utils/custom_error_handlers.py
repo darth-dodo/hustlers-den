@@ -6,12 +6,12 @@ import sys
 # django imports
 from django.utils.deprecation import MiddlewareMixin
 from django.http.response import JsonResponse
-from rest_framework.status import  HTTP_500_INTERNAL_SERVER_ERROR
 
 # project level imports
 
 # app level imports
 from utils.hustlers_den_exceptions import HustlersDenBaseException, HustlersDenValidationError, HustlersPermissionDenied
+from utils.constants import DEFAULT_SERVER_ERROR
 from den.settings.base import get_env_variable
 
 logger = logging.getLogger(__name__)
@@ -36,8 +36,8 @@ class HustlersDenExceptionMiddleware(MiddlewareMixin):
         logger.debug('Request: {0} | Exception: {1}'.format(request, exception))
 
         response_data = dict()
-        response_data['message'] = "Something went wrong on the server side. Please check the logs!"
-        status_code = HTTP_500_INTERNAL_SERVER_ERROR
+        response_data['message'] = DEFAULT_SERVER_ERROR.message
+        status_code = DEFAULT_SERVER_ERROR.status_code
 
         # custom processing only for errors subclassed from BaseException
         if isinstance(exception, HustlersDenBaseException):
