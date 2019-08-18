@@ -11,7 +11,7 @@ from rest_framework.status import  HTTP_500_INTERNAL_SERVER_ERROR
 # project level imports
 
 # app level imports
-from utils.hustlers_den_exceptions import HustlersDenBaseException, HustlersDenValidationError
+from utils.hustlers_den_exceptions import HustlersDenBaseException, HustlersDenValidationError, HustlersPermissionDenied
 from den.settings.base import get_env_variable
 
 logger = logging.getLogger(__name__)
@@ -42,7 +42,7 @@ class HustlersDenExceptionMiddleware(MiddlewareMixin):
         # custom processing only for errors subclassed from BaseException
         if isinstance(exception, HustlersDenBaseException):
 
-            if isinstance(exception, HustlersDenValidationError):
+            if isinstance(exception, (HustlersDenValidationError, HustlersPermissionDenied)):
                 response_data['message'] = exception.message
                 status_code = exception.status_code
                 return JsonResponse(response_data, status=status_code)
