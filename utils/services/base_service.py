@@ -52,18 +52,24 @@ class BaseService:
         return :HustlersDenValidationError: Raise the errors in a stringify
                 manner
         """
-        if not raise_errors:
+        if raise_errors and not self.is_valid:
+            raise HustlersDenValidationError(message=self.error_message)
+        else:
             return self.is_valid
 
-        if not self.is_valid:
-            raise HustlersDenValidationError(message=self.error_message)
+
+        # if not raise_errors:
+        #     return self.is_valid
+        #
+        # if not self.is_valid:
+        #     raise HustlersDenValidationError(message=self.error_message)
 
     def execute(self, raise_errors=False):
         """
         Wrapper for running the execute method. Needs to be called at the start
         of the subclassed method.
 
-        Implicitly runs the validations in case the validateions haven't been
+        Implicitly runs the validations in case the validations haven't been
         run already
 
         Optionally raises validation errors and "explodes" the service
