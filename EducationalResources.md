@@ -55,4 +55,5 @@
 - https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance
 - https://www.machinelearningplus.com/python/python-property/
 - https://docs.python.org/3/library/collections.html#collections.namedtuple
+- https://en.wikipedia.org/wiki/Name_mangling#Python
 

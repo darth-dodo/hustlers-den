@@ -64,15 +64,18 @@ class HustlerCreation(BaseService):
 
     def validate(self, raise_errors=False):
         self.__validate_django_user_and_hustler_pairing()
+
         if self.__is_superuser:
             self.__validate_superuser_creation()
-        return super().validate()
+
+        return super().validate(raise_errors)
 
     @transaction.atomic()
     def execute(self, raise_errors=False):
+
+        # run validations if not run already, return False if validations weren't successful
         super().execute(raise_errors)
-        if not self.is_valid:
-            return self.is_valid
+        if not self.is_valid: return self.is_valid
 
         self.__django_user_object = self.__get_or_create_django_user_object()
         self.__hustler_object = self.__create_hustler_object()
@@ -83,7 +86,6 @@ class HustlerCreation(BaseService):
         self.__set_service_response_data()
 
         return self.is_valid
-
 
     # private methods
 
@@ -125,6 +127,7 @@ class HustlerCreation(BaseService):
         hustler = Hustler()
         hustler.django_user = self.__django_user_object
         hustler.created_by = hustler.modified_by = self.__current_user.hustler
+
         hustler.save()
 
         if self.__interests:
