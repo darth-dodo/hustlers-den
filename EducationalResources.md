@@ -10,6 +10,7 @@
 - https://realpython.com/fun-with-djangos-new-postgres-features/
 - https://charlesleifer.com/blog/shortcomings-in-the-django-orm-and-a-look-at-peewee-a-lightweight-alternative/
 - https://simpleisbetterthancomplex.com/tips/2016/08/16/django-tip-11-custom-manager-with-chainable-querysets.html
+- https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/
 
 # Services
 - https://sunscrapers.com/blog/where-to-put-business-logic-django/#Idea_3_Services
@@ -31,6 +32,7 @@
 - https://stackoverflow.com/questions/37777321/validating-a-foreign-key-field-in-a-serializer-django-rest-framework
 - http://www.tomchristie.com/rest-framework-2-docs/tutorial/4-authentication-and-permissions
 - https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
+- https://stackoverflow.com/questions/50994516/django-rest-framework-to-return-dicts-instead-of-ordereddicts
 
 
 # Django Internals
@@ -55,4 +57,4 @@
 - https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance
 - https://www.machinelearningplus.com/python/python-property/
 - https://docs.python.org/3/library/collections.html#collections.namedtuple
-
+- https://en.wikipedia.org/wiki/Name_mangling#Python

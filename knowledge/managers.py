@@ -10,6 +10,12 @@ class CategoryQueryset(models.query.QuerySet):
     def for_slug(self, slug):
         return self.filter(slug=slug)
 
+    def name_in(self, list_of_names):
+        return self.filter(name__in=list_of_names)
+
+    def slug_in(self, list_of_slugs):
+        return self.filter(slug__in=list_of_slugs)
+
 
 class CategoryManager(models.Manager):
     def get_queryset(self):
@@ -20,6 +26,16 @@ class CategoryManager(models.Manager):
 
     def for_slug(self, slug):
         return self.get_queryset().for_slug(slug=slug)
+
+    def name_in(self, list_of_names):
+        if not isinstance(list_of_names, list):
+            list_of_names = [list_of_names]
+        return self.get_queryset().name_in(list_of_names)
+
+    def slug_in(self, list_of_slugs):
+        if not isinstance(list_of_slugs, list):
+            list_of_slugs = [list_of_slugs]
+        return self.get_queryset().slug_in(list_of_slugs)
 
 
 class MediaTypeQueryset(models.query.QuerySet):
