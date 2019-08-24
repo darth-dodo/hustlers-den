@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import json
 
 # django imports
 from rest_framework import serializers
@@ -33,7 +34,7 @@ class HustlerMiniSerializer(serializers.ModelSerializer):
 
 class HustlerSerializer(serializers.ModelSerializer):
     """
-    Hustler model serializer using actual fields and properties to 
+    Hustler model serializer using actual fields and properties to
     get Django User specific data
     """
     interests = serializers.PrimaryKeyRelatedField(many=True, queryset=Category.objects.active())
@@ -44,7 +45,9 @@ class HustlerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hustler
         fields = ('interests', 'created_by', 'created_at', 'created_by_data',
-                  'active', 'full_name', 'email', 'username', 'superuser_access', 'user_id', 'interests_meta_data')
+                  'active', 'full_name', 'email', 'username',
+                  'superuser_access', 'user_id', 'interests',
+                  'interests_meta_data')
 
     def get_user_id(self, obj):
         return obj.django_user_id
@@ -53,5 +56,15 @@ class HustlerSerializer(serializers.ModelSerializer):
         return HustlerMiniSerializer(obj.created_by).data
 
     def get_interests_meta_data(self, obj):
+
+        active_interests = obj.interests.active()
+        return [{"id": current_interest.id,
+                "name": current_interest.name,
+                "slug": current_interest.slug} for
+                current_interest in active_interests]
+        """
         from knowledge.api.serializers import CategoryMiniSerializer
-        return CategoryMiniSerializer(obj.interests.active(), many=True).data
+        # todo find a better way as the default returns an ordered dict due to
+        # DRF internals and to preserve the ordering of the objects
+        return json.loads(json.dumps(CategoryMiniSerializer(obj.interests.active(), many=True).data))
+        """

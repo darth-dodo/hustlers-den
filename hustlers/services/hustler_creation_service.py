@@ -6,14 +6,12 @@ import logging
 # django imports
 from django.db import transaction
 
-
-
 # project level imports
 from utils.services.base_service import BaseService
 from utils.hustlers_den_exceptions import HustlersDenValidationError
 from utils.auth_utils import generate_hustler_password
+from django.utils.text import slugify
 from knowledge.models import Category
-
 
 # app level imports
 from hustlers.models import User, Hustler
@@ -31,17 +29,20 @@ class HustlerCreation(BaseService):
     - creates django user
     - creates hustler object
     - attaches interests to the hustler object
-    - if created by an active Admin User
+    - [todo] if created by an active Admin User
 
 
     a = {
-        "username": "test@gmail.com",
-        "first_name": "Test",
-        "last_name": "Apples",
-        "is_superuser": False
-    }
+            "username": "test@gmail.com",
+            "first_name": "Test",
+            "last_name": "Apples",
+            "is_superuser": False,
+            "interests": ["Python", "Django", "Machine Learning", "Ruby"],
+            "request_user": "Django User object"
+        }
 
-
+    return :bool: Service success status
+    return :HustlersDenValidationError: if case of errors and `raise_errors` mode
 
     """
     def __init__(self, context):
@@ -79,6 +80,9 @@ class HustlerCreation(BaseService):
 
         self.__django_user_object = self.__get_or_create_django_user_object()
         self.__hustler_object = self.__create_hustler_object()
+
+        if self.__interests:
+            self.__attach_hustler_interests()
 
         if self.__is_superuser:
             self.__mark_as_superuser()
@@ -130,21 +134,19 @@ class HustlerCreation(BaseService):
 
         hustler.save()
 
-        if self.__interests:
-            hustler_interested_in_categories = Category.objects.name_in(self.__interests)
-            hustler.interests.add(hustler_interested_in_categories)
-
         return hustler
 
     def __mark_as_superuser(self):
         self.__django_user_object.is_superuser = True
         self.__django_user_object.save()
 
+    def __attach_hustler_interests(self):
+        interest_slugs = [slugify(current_interest) for current_interest in self.__interests]
+        interest_objects = list(Category.objects.slug_in(interest_slugs))
+        self.__hustler_object.interests.add(*interest_objects)
+
+
     def __set_service_response_data(self):
         user_data = HustlerSerializer(self.__hustler_object).data
         user_data.update({"password": self.__generated_password})
         self.service_response_data = user_data
-
-
-
-
