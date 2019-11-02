@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eb46c513e8ba6a264bf9404e19e0af8f2cac2af833548f7b99abdf0ac53c05ec"
+            "sha256": "88c3f0e8d5b61c0d804bdcd431ec04b7d0f2950fbaef7d958cf0eea72dac8e19"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -181,18 +181,18 @@
         },
         "django-timezone-field": {
             "hashes": [
-                "sha256:7d7a37cfeacec5b1e81cd2f0aa334d46ebaa369cd516028579ed343cbc676c38",
-                "sha256:d9fdab77c443b78c362ffaeb50fe7d7b54692c89aaae8ca1cae67848139b82ac"
+                "sha256:1a7bbcf984ae191c6dfe713994b4ff4062dc21e47a909356c93e76d027c87c8f",
+                "sha256:a25af66b86d13709aa8c69a361c1ea68322cda64b5bbf9141fb67b8b44aa4e43"
             ],
-            "version": "==3.0"
+            "version": "==3.1"
         },
         "djangorestframework": {
             "hashes": [
-                "sha256:b6714c3e4b0f8d524f193c91ecf5f5450092c2145439ac2769711f7eba89a9d9",
-                "sha256:c375e4f95a3a64fccac412e36fb42ba36881e52313ec021ef410b40f67cddca4"
+                "sha256:79c6efbb2514bc50cf25906d7c0a5cfead714c7af667ff4bd110312cd380ae66",
+                "sha256:a4138613b67e3a223be6c97f53b13d759c5b90d2b433bad670b8ebf95402075f"
             ],
             "index": "pypi",
-            "version": "==3.8.2"
+            "version": "==3.9.1"
         },
         "djangorestframework-jwt": {
             "hashes": [
@@ -220,10 +220,10 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:23d3d873e008a513952355379d93cbcab874c58f4f034ff657c7a87422fa64e8",
-                "sha256:80d2de76188eabfbfcf27e6a37342c2827801e59c4cc14b0371c56fed43820e3"
+                "sha256:aa18d7378b00b40847790e7c27e11673d7fed219354109d0e7b9e5b25dc3ad26",
+                "sha256:d5f18a79777f3aa179c145737780282e27b508fc8fd688cb17c7a813e8bd39af"
             ],
-            "version": "==0.19"
+            "version": "==0.23"
         },
         "ipaddress": {
             "hashes": [
@@ -283,10 +283,10 @@
         },
         "kombu": {
             "hashes": [
-                "sha256:55274dc75eb3c3994538b0973a0fadddb236b698a4bc135b8aa4981e0a710b8f",
-                "sha256:e5f0312dfb9011bebbf528ccaf118a6c2b5c3b8244451f08381fb23e7715809b"
+                "sha256:31edb84947996fdda065b6560c128d5673bb913ff34aa19e7b84755217a24deb",
+                "sha256:c9078124ce2616b29cf6607f0ac3db894c59154252dee6392cdbbe15e5c4b566"
             ],
-            "version": "==4.6.4"
+            "version": "==4.6.5"
         },
         "lazy-object-proxy": {
             "hashes": [
@@ -337,6 +337,13 @@
             ],
             "index": "pypi",
             "version": "==0.6.1"
+        },
+        "more-itertools": {
+            "hashes": [
+                "sha256:409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832",
+                "sha256:92b8c4b06dac4f0611c0729b2f2ede52b2e1bac1ab48f089c7ddc12e26bb60c4"
+            ],
+            "version": "==7.2.0"
         },
         "openapi-codec": {
             "hashes": [
@@ -455,9 +462,9 @@
         },
         "python-crontab": {
             "hashes": [
-                "sha256:11488bbac026bf77a659fee0bf8e20de9651753ad0fdf6649237e3b9e04b866a"
+                "sha256:3ac1608ff76032e6fc6e16b5fbf83b51557e0e066bf78e9f88571571e7bd7ae6"
             ],
-            "version": "==2.3.8"
+            "version": "==2.4.0"
         },
         "python-dateutil": {
             "hashes": [
@@ -605,10 +612,10 @@
         },
         "zipp": {
             "hashes": [
-                "sha256:4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a",
-                "sha256:8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"
+                "sha256:3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e",
+                "sha256:f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         }
     },
     "develop": {}
