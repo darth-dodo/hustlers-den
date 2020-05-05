@@ -1,5 +1,8 @@
 from django.core.exceptions import PermissionDenied
 from rest_framework_jwt.settings import api_settings
+from django.utils.crypto import get_random_string
+from utils.constants import AUTO_GENERATED_PASSWORD_LENGTH
+
 
 # binding.pry equivalent
 # import code; code.interact(local=locals())
@@ -51,3 +54,12 @@ def jwt_response_payload_handler(token=None, user=None, request=None):
     }
 
     return return_data
+
+
+def generate_hustler_password(length_of_password=AUTO_GENERATED_PASSWORD_LENGTH):
+    """
+
+    :param length_of_password:
+    :return:
+    """
+    return get_random_string(length_of_password)
