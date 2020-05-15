@@ -161,6 +161,7 @@ def broadcast_resource_published_message(sender, instance, action, **kwargs):
     Currently, this event is being triggered even when post creation in the edit mode if we are
     adding more categories to a KnowledgeStore resource
     """
+    # import code; code.interact(local=locals())
     logger.debug(action)
 
     # different action types are post_add, pre_add, pre_remove, post_remove, pre_clear, post_clear

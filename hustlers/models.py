@@ -15,12 +15,21 @@ class Hustler(models.Model):
     Each hustler can have interests in zero or more categories
     """
     bio = models.TextField(max_length=500, blank=True)
-    # todo consider remove this primary key contraint for uniformity across model pks
-    django_user = models.OneToOneField(to=User, primary_key=True, related_name='hustler', on_delete=models.PROTECT)
-    interests = models.ManyToManyField(to="knowledge.Category", blank=True, related_name='hustlers')
-    created_by = models.ForeignKey(to='self', null=True, blank=True, on_delete=models.PROTECT)
-    modified_by = models.ForeignKey(to='self', null=True, blank=True, on_delete=models.PROTECT,
-                                    related_name='hustlers_modified')
+
+    django_user = models.OneToOneField(to=User,
+                                       primary_key=True,
+                                       related_name='hustler',
+                                       on_delete=models.PROTECT)
+
+    created_by = models.ForeignKey(to='self',
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
+
+    interests = models.ManyToManyField(to="knowledge.Category",
+                                       blank=True,
+                                       related_name='hustlers')
+
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -40,7 +49,7 @@ class Hustler(models.Model):
 
         if hasattr(self, '_updated_django_user_id'):
 
-            if (not hustler_created
+            if (not self._state.adding
                 and self._updated_django_user_id is not None and
                         self._updated_django_user_id != self.django_user_id):
 

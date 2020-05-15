@@ -50,9 +50,8 @@ Cheers!
  - The Database Schema diagram can be found over [here](https://github.com/darth-dodo/hustlers-den/blob/master/hustlers-den-schema.png) 
 
 ## API Documentation
-- [Interactive API Documentation generated using Swagger can be found here](https://hustlers-den.herokuapp.com/swagger-docs)
 - [Static API Documentation using the OpenAPI spec can be found over here](https://hustlers-den.herokuapp.com/docs)
-- [Work in Progress Postman Documentation](https://documenter.getpostman.com/view/8196826/SVfGzCGo?version=latest)
+- [Interactive API Documentation generated using Swagger can be found here](https://hustlers-den.herokuapp.com/swagger-docs)
 
 ## Educational Resources
 - While working on anything, we tend to come across educational resources which help us in getting better and understanding a problem as well as it's solution on a deeper level
@@ -88,10 +87,10 @@ Cheers!
     - [x] SuperUsers can update anything
     - [x] Custom Permission Class 
     - [x] Error Handling for custom Permission denied error exception
-- [ ] [Hustler Sign up via REST api](https://github.com/darth-dodo/hustlers-den/tree/epic/user-management)
-    - [x] [Make an Abstract ViewSet for Hustler](https://github.com/darth-dodo/hustlers-den/pull/31)
-    - [x] [ViewSet for Hustler with Access Control](https://github.com/darth-dodo/hustlers-den/pull/33)
-    - [ ] Service to create django user, hustler and assign permissions group
+- [ ] Hustler Sign up via REST api
+    - [x] Make an Abstract ViewSet for Hustler
+    - [ ] Model ViewSet for Hustler with Access Control
+    - [ ] Service to create user, hustler and assign permissions
     - [ ] Integrate the service in endpoint
     - [ ] Endpoint can be anonymous and require user verification from super user
     - [ ] Endpoint can be consumed by super users for autoverified new user

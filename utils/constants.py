@@ -13,5 +13,3 @@ DEFAULT_VALIDATION_ERROR = HUSTLERS_DEN_ERROR_CONTAINER(message="Oops! Something
 
 DEFAULT_PERMISSION_DENIED_ERROR = HUSTLERS_DEN_ERROR_CONTAINER(message="You are not authorized for this action",
                                                                status_code=HTTP_403_FORBIDDEN)
-
-AUTO_GENERATED_PASSWORD_LENGTH = 30

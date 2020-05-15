@@ -6,7 +6,7 @@ from utils.hustlers_den_exceptions import HustlersDenValidationError
 
 logger = logging.getLogger(__name__)
 
-
+#ToDo(Juneja) Add in Atomic transaction capability based on the needs
 class BaseService:
     def __init__(self):
         """
@@ -27,8 +27,6 @@ class BaseService:
 
         return :str:
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
-
         return ', '.join(self.errors)
 
     @property
@@ -38,8 +36,6 @@ class BaseService:
 
         return :bool:
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
-
         if not self.errors:
             self.valid = True
         else:
@@ -56,27 +52,24 @@ class BaseService:
         return :HustlersDenValidationError: Raise the errors in a stringify
                 manner
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        if not raise_errors:
+            return self.is_valid
 
-        if not self.is_valid and raise_errors:
+        if not self.is_valid:
             raise HustlersDenValidationError(message=self.error_message)
-
-        return self.is_valid
 
     def execute(self, raise_errors=False):
         """
         Wrapper for running the execute method. Needs to be called at the start
         of the subclassed method.
 
-        Implicitly runs the validations in case the validations haven't been
+        Implicitly runs the validations in case the validateions haven't been
         run already
 
         Optionally raises validation errors and "explodes" the service
 
         return :bool: Returns whether the execution was valid.
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
-
         if self.valid is None:
             self.validate(raise_errors)
 

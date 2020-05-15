@@ -24,12 +24,6 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CategoryMiniSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('id', 'name', 'slug',)
-
-
 class CategoryFormSerilaizer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -82,4 +76,4 @@ class KnowledgeStoreSerializer(serializers.ModelSerializer, EagerLoadingSerializ
                   'created_by', 'created_at', 'modified_at', 'modified_by')
 
     def get_categories_data(self, obj):
-        return CategoryMiniSerializer(obj.categories.all(), many=True).data
+        return [CategorySerializer(current_category).data for current_category in obj.categories.all()]
