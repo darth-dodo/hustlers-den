@@ -13,7 +13,7 @@ class HustlersAdmin(admin.ModelAdmin):
 
         # if hustler has already been created, make the django user and created at read only
         if obj:
-            custom_readonly_fields = ('django_user', 'created_by',) if hasattr(obj, 'django_user') else ('created_at',)
+            custom_readonly_fields = ('django_user', 'created_by', 'modified_by') if hasattr(obj, 'django_user') else ('created_at',)
             return self.readonly_fields + custom_readonly_fields
         return self.readonly_fields
 
@@ -26,7 +26,7 @@ class HustlersAdmin(admin.ModelAdmin):
             kwargs['queryset'] = User.objects.filter(hustler=None)
             return db_field.formfield(**kwargs)
 
-        if db_field.name == 'created_by':
+        if db_field.name in ['created_by', 'modified_by']:
             requester_django_user = request.user
             kwargs['initial'] = requester_django_user.hustler if hasattr(requester_django_user, 'hustler') else None
             kwargs['queryset'] = Hustler.objects.filter(django_user=requester_django_user)
