@@ -56,14 +56,14 @@ class KnowledgeStoreAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            custom_readonly_fields = ('created_by',)
+            custom_readonly_fields = ('created_by', 'modified_by',)
             return self.readonly_fields + custom_readonly_fields
         return self.readonly_fields
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
 
         # TODO optimize this
-        if db_field.name == 'created_by':
+        if db_field.name in ['created_by', 'modified_by']:
             requester_django_user = request.user
             kwargs['initial'] = requester_django_user.hustler if hasattr(requester_django_user, 'hustler') else None
             kwargs['queryset'] = Hustler.objects.filter(django_user=requester_django_user)
