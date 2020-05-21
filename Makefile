@@ -1,3 +1,6 @@
+init:
+	poetry shell
+
 migrations:
 	python manage.py makemigrations
 	python manage.py migrate
