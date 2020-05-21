@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     # installs a hook in Django that will automatically report uncaught exceptions.
     'raven.contrib.django.raven_compat',
 
-    'django_celery_beat',
+    # 'django_celery_beat',
 
     #swagger app
     'rest_framework_swagger',
