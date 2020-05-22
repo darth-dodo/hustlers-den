@@ -165,11 +165,12 @@ category = "main"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 name = "django"
 optional = false
-python-versions = ">=3.4"
-version = "2.0.6"
+python-versions = ">=3.5"
+version = "2.2.10"
 
 [package.dependencies]
 pytz = "*"
+sqlparse = "*"
 
 [package.extras]
 argon2 = ["argon2-cffi (>=16.1.0)"]
@@ -731,7 +732,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d19eedd043d674a83ffc73fcdc93888ff9945994508044ca307817238aaec4dd"
+content-hash = "2b5ae4ad5131ab299f139f6cc07191b3c38a63302ee035563ba70502002f4597"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -788,8 +789,8 @@ dj-database-url = [
     {file = "dj_database_url-0.5.0-py2.py3-none-any.whl", hash = "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"},
 ]
 django = [
-    {file = "Django-2.0.6-py3-none-any.whl", hash = "sha256:69ff89fa3c3a8337015478a1a0744f52a9fef5d12c1efa01a01f99bcce9bf10c"},
-    {file = "Django-2.0.6.tar.gz", hash = "sha256:3eb25c99df1523446ec2dc1b00e25eb2ecbdf42c9d8b0b8b32a204a8db9011f8"},
+    {file = "Django-2.2.10-py3-none-any.whl", hash = "sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038"},
+    {file = "Django-2.2.10.tar.gz", hash = "sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a"},
 ]
 django-debug-toolbar = [
     {file = "django-debug-toolbar-1.9.1.tar.gz", hash = "sha256:d9ea75659f76d8f1e3eb8f390b47fc5bad0908d949c34a8a3c4c87978eb40a0f"},
