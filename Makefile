@@ -18,4 +18,4 @@ server:
 	python manage.py runserver
 
 requirements:
-	poetry export -f requirements.txt
+	poetry export -f requirements.txt > requirements.txt
