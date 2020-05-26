@@ -21,7 +21,6 @@ django-extensions = "^2.2.9"
 django-filter = "^2.2.0"
 django-jet = "1.0.7"
 django-querycount = "0.7.0"
-django-rest-swagger = "2.2.0"
 djangorestframework = "^3.11.0"
 djangorestframework-jwt = "1.11.0"
 graphviz = "0.8.4"
@@ -64,6 +63,7 @@ psycopg2-binary = "^2.8.5"
 whitenoise = "^5.1.0"
 Werkzeug = "^1.0.1"
 gunicorn = "^20.0.4"
+drf-yasg = {extras = ["validation"], version = "^1.17.1"}
 
 [tool.poetry.dev-dependencies]
 

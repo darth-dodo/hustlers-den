@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     # 'django_celery_beat',
 
     #swagger app
-    'rest_framework_swagger',
+    'drf_yasg',
 ]
 
 PROJECT_APPS = [
