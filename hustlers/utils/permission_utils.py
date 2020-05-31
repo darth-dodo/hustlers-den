@@ -1,5 +1,6 @@
+from django.contrib.auth.models import Group
+
 from hustlers.constants import REGULAR_HUSTLER_GROUP
-from hustlers.models import Group
 
 
 def assign_hustler_permission_group(
