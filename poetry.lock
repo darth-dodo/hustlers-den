@@ -219,11 +219,11 @@ category = "main"
 description = "A configurable set of panels that display various debug information about the current request/response."
 name = "django-debug-toolbar"
 optional = false
-python-versions = "*"
-version = "1.9.1"
+python-versions = ">=3.5"
+version = "2.2"
 
 [package.dependencies]
-Django = ">=1.8"
+Django = ">=1.11"
 sqlparse = ">=0.2.0"
 
 [[package]]
@@ -983,7 +983,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "beb3e17df2c076f2feb4ec2cc9f10c5b7dc8cd06a75ba2b618fb73080f84b8e0"
+content-hash = "67d50de12c724c169ab8b5dc2d52e76c5a95fbf64ad89c8d239519b5e039a740"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1059,8 +1059,8 @@ django = [
     {file = "Django-2.2.12.tar.gz", hash = "sha256:69897097095f336d5aeef45b4103dceae51c00afa6d3ae198a2a18e519791b7a"},
 ]
 django-debug-toolbar = [
-    {file = "django-debug-toolbar-1.9.1.tar.gz", hash = "sha256:d9ea75659f76d8f1e3eb8f390b47fc5bad0908d949c34a8a3c4c87978eb40a0f"},
-    {file = "django_debug_toolbar-1.9.1-py2.py3-none-any.whl", hash = "sha256:4af2a4e1e932dadbda197b18585962d4fc20172b4e5a479490bc659fe998864d"},
+    {file = "django-debug-toolbar-2.2.tar.gz", hash = "sha256:eabbefe89881bbe4ca7c980ff102e3c35c8e8ad6eb725041f538988f2f39a943"},
+    {file = "django_debug_toolbar-2.2-py3-none-any.whl", hash = "sha256:ff94725e7aae74b133d0599b9bf89bd4eb8f5d2c964106e61d11750228c8774c"},
 ]
 django-extensions = [
     {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
