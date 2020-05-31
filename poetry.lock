@@ -611,7 +611,7 @@ description = "Pexpect allows easy control of interactive console applications."
 name = "pexpect"
 optional = false
 python-versions = "*"
-version = "4.6.0"
+version = "4.8.0"
 
 [package.dependencies]
 ptyprocess = ">=0.5"
@@ -983,7 +983,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "beb3e17df2c076f2feb4ec2cc9f10c5b7dc8cd06a75ba2b618fb73080f84b8e0"
+content-hash = "5506c802ed83e1802ff40592a41672ab331a52b6a3aae562d926e0fc58874aaf"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1205,8 +1205,8 @@ parso = [
     {file = "parso-0.2.1.tar.gz", hash = "sha256:f0604a40b96e062b0fd99cf134cc2d5cdf66939d0902f8267d938b0d5b26707f"},
 ]
 pexpect = [
-    {file = "pexpect-4.6.0-py2.py3-none-any.whl", hash = "sha256:3fbd41d4caf27fa4a377bfd16fef87271099463e6fa73e92a52f92dfee5d425b"},
-    {file = "pexpect-4.6.0.tar.gz", hash = "sha256:2a8e88259839571d1251d278476f3eec5db26deb73a70be5ed5dc5435e418aba"},
+    {file = "pexpect-4.8.0-py2.py3-none-any.whl", hash = "sha256:0b48a55dcb3c05f3329815901ea4fc1537514d6ba867a152b581d69ae3710937"},
+    {file = "pexpect-4.8.0.tar.gz", hash = "sha256:fc65a43959d153d0114afe13997d439c22823a27cefceb5ff35c2178c6784c0c"},
 ]
 pickleshare = [
     {file = "pickleshare-0.7.4-py2.py3-none-any.whl", hash = "sha256:c9a2541f25aeabc070f12f452e1f2a8eae2abd51e1cd19e8430402bdf4c1d8b5"},
