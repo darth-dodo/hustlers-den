@@ -1,5 +1,5 @@
+from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
-from django.conf.urls import include, url
 
 from .views import ExtensionFormData
 
@@ -10,5 +10,5 @@ routers = DefaultRouter()
 urlpatterns = routers.urls
 
 urlpatterns += [
-    url(r'^form-data/', ExtensionFormData.as_view()),
+    url(r"^form-data/", ExtensionFormData.as_view()),
 ]

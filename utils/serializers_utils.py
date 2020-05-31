@@ -1,4 +1,3 @@
-
 # from rest_framework import serializers
 # https://ses4j.github.io/2015/11/23/optimizing-slow-django-rest-framework-performance/
 

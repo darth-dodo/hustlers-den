@@ -1,18 +1,14 @@
-# third party imports
-
-
-# django imports
 from django.contrib.auth.models import Group, Permission, User
 from django.utils.text import slugify
 
-
-# project level imports
 from hustlers.constants import ALL_PERMISSION_GROUPS
 from hustlers.models import Hustler
-from knowledge.models import Category, MediaType, ExpertiseLevel
-
-# app level imports
-from utils.data_migration.seed_data_constants import SEED_CATEGORIES, SEED_MEDIA_TYPES, SEED_EXPERTISE_LEVELS
+from knowledge.models import Category, ExpertiseLevel, MediaType
+from utils.data_migration.seed_data_constants import (
+    SEED_CATEGORIES,
+    SEED_EXPERTISE_LEVELS,
+    SEED_MEDIA_TYPES,
+)
 from utils.hustlers_den_exceptions import HustlersDenBaseException
 
 
@@ -26,7 +22,9 @@ def get_or_create_groups():
             permission_group = Group()
             permission_group.name = current_permission_group
             permission_group.save()
-            non_delete_permissions = Permission.objects.exclude(codename__startswith='delete')
+            non_delete_permissions = Permission.objects.exclude(
+                codename__startswith="delete"
+            )
             permission_group.permissions.set(non_delete_permissions)
             permission_group.save()
 
@@ -47,11 +45,11 @@ def create_admin_super_user():
     """
     print("Creating Admin Hustler with Super User access")
     try:
-        user = User.objects.get(username='admin@hden.com')
+        user = User.objects.get(username="admin@hden.com")
     except User.DoesNotExist:
         user = User()
-        user.username = 'admin@hden.com'
-        user.set_password('sharing-is-caring')
+        user.username = "admin@hden.com"
+        user.set_password("sharing-is-caring")
         user.is_staff = True
         user.is_superuser = True
         user.save()
@@ -77,8 +75,8 @@ def get_admin_hustler():
     :return:
     """
     try:
-        user_object = User.objects.get(username='admin@hden.com')
-        if not hasattr(user_object, 'hustler'):
+        user_object = User.objects.get(username="admin@hden.com")
+        if not hasattr(user_object, "hustler"):
             raise HustlersDenBaseException("Hustler not present!")
 
     except User.DoesNotExist:
@@ -94,9 +92,9 @@ def get_or_create_categories():
     admin_hustler = get_admin_hustler()
     for current_category in SEED_CATEGORIES:
         category_slug = slugify(current_category)
-        category, created = Category.objects.get_or_create(slug=category_slug,
-                                                           name=current_category,
-                                                           created_by=admin_hustler)
+        category, created = Category.objects.get_or_create(
+            slug=category_slug, name=current_category, created_by=admin_hustler
+        )
 
 
 def get_or_create_expertise_levels():
@@ -108,9 +106,11 @@ def get_or_create_expertise_levels():
     admin_hustler = get_admin_hustler()
     for current_expertise_level in SEED_EXPERTISE_LEVELS:
         expertise_level_slug = slugify(current_expertise_level)
-        expertise_level, created = ExpertiseLevel.objects.get_or_create(slug=expertise_level_slug,
-                                                                        name=current_expertise_level,
-                                                                        created_by=admin_hustler)
+        expertise_level, created = ExpertiseLevel.objects.get_or_create(
+            slug=expertise_level_slug,
+            name=current_expertise_level,
+            created_by=admin_hustler,
+        )
 
 
 def get_or_create_media_types():
@@ -122,9 +122,9 @@ def get_or_create_media_types():
     admin_hustler = get_admin_hustler()
     for current_media_type in SEED_MEDIA_TYPES:
         media_type_slug = slugify(current_media_type)
-        media_type, created = MediaType.objects.get_or_create(slug=media_type_slug,
-                                                              name=current_media_type,
-                                                              created_by=admin_hustler)
+        media_type, created = MediaType.objects.get_or_create(
+            slug=media_type_slug, name=current_media_type, created_by=admin_hustler
+        )
 
 
 def get_or_create_knowledge_resources():

@@ -1,6 +1,5 @@
-import os
-import sys
 import logging
+import sys
 
 from utils.hustlers_den_exceptions import HustlersDenValidationError
 
@@ -13,7 +12,9 @@ class BaseService:
         Superclass Base Service for Hustlers Den services
         """
 
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        logger.debug(
+            "Func %s begins with data %s", sys._getframe().f_code.co_name, locals()
+        )
 
         self.service_response_data = None
         self.valid = None
@@ -27,9 +28,11 @@ class BaseService:
 
         return :str:
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        logger.debug(
+            "Func %s begins with data %s", sys._getframe().f_code.co_name, locals()
+        )
 
-        return ', '.join(self.errors)
+        return ", ".join(self.errors)
 
     @property
     def is_valid(self):
@@ -38,7 +41,9 @@ class BaseService:
 
         return :bool:
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        logger.debug(
+            "Func %s begins with data %s", sys._getframe().f_code.co_name, locals()
+        )
 
         if not self.errors:
             self.valid = True
@@ -56,7 +61,9 @@ class BaseService:
         return :HustlersDenValidationError: Raise the errors in a stringify
                 manner
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        logger.debug(
+            "Func %s begins with data %s", sys._getframe().f_code.co_name, locals()
+        )
 
         if not self.is_valid and raise_errors:
             raise HustlersDenValidationError(message=self.error_message)
@@ -75,7 +82,9 @@ class BaseService:
 
         return :bool: Returns whether the execution was valid.
         """
-        logger.debug('Func %s begins with data %s', sys._getframe().f_code.co_name, locals())
+        logger.debug(
+            "Func %s begins with data %s", sys._getframe().f_code.co_name, locals()
+        )
 
         if self.valid is None:
             self.validate(raise_errors)

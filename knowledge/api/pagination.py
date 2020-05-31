@@ -1,7 +1,10 @@
-from rest_framework.pagination import  LimitOffsetPagination, PageNumberPagination
+from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
 
-
-from knowledge.api.constants import MAX_PAGINATION_LIMIT, DEFAULT_PAGINATION_LIMIT, PAGE_SIZE
+from knowledge.api.constants import (
+    DEFAULT_PAGINATION_LIMIT,
+    MAX_PAGINATION_LIMIT,
+    PAGE_SIZE,
+)
 
 
 class KnowledgeListPagination(LimitOffsetPagination):

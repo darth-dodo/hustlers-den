@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('knowledge', '0003_auto_20180610_0728'),
+        ("knowledge", "0003_auto_20180610_0728"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='category',
-            name='description',
+            model_name="category",
+            name="description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='slug',
+            model_name="category",
+            name="slug",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='expertiselevel',
-            name='description',
+            model_name="expertiselevel",
+            name="description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='knowledgestore',
-            name='description',
+            model_name="knowledgestore",
+            name="description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='mediatype',
-            name='description',
+            model_name="mediatype",
+            name="description",
             field=models.TextField(blank=True),
         ),
     ]

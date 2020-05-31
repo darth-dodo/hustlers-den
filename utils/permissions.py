@@ -1,18 +1,14 @@
-import os
-import sys
 import logging
 
-from rest_framework.permissions import BasePermission, SAFE_METHODS
-
-from utils.hustlers_den_exceptions import HustlersPermissionDenied
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 from hustlers.models import Hustler
+from utils.hustlers_den_exceptions import HustlersPermissionDenied
 
 logger = logging.getLogger(__name__)
 
 
 class IsOwnerOrSuperUser(BasePermission):
-
     def has_object_permission(self, request, view, obj):
 
         logger.debug(request, view, obj)
