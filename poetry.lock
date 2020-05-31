@@ -603,7 +603,10 @@ description = "A Python Parser"
 name = "parso"
 optional = false
 python-versions = "*"
-version = "0.2.1"
+version = "0.5.0"
+
+[package.extras]
+testing = ["docopt", "pytest (>=3.0.7)"]
 
 [[package]]
 category = "main"
@@ -983,7 +986,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "beb3e17df2c076f2feb4ec2cc9f10c5b7dc8cd06a75ba2b618fb73080f84b8e0"
+content-hash = "fde045e93376e3e76de9cfee11eb509459c7b296ac55c478a6346a1c422e1cba"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1201,8 +1204,8 @@ packaging = [
     {file = "packaging-20.4.tar.gz", hash = "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8"},
 ]
 parso = [
-    {file = "parso-0.2.1-py2.py3-none-any.whl", hash = "sha256:cdef26e8adc10d589f3ec4eb444bd0a29f3f1eb6d72a4292ab8afcb9d68976a6"},
-    {file = "parso-0.2.1.tar.gz", hash = "sha256:f0604a40b96e062b0fd99cf134cc2d5cdf66939d0902f8267d938b0d5b26707f"},
+    {file = "parso-0.5.0-py2.py3-none-any.whl", hash = "sha256:5052bb33be034cba784193e74b1cde6ebf29ae8b8c1e4ad94df0c4209bfc4826"},
+    {file = "parso-0.5.0.tar.gz", hash = "sha256:db5881df1643bf3e66c097bfd8935cf03eae73f4cb61ae4433c9ea4fb6613446"},
 ]
 pexpect = [
     {file = "pexpect-4.6.0-py2.py3-none-any.whl", hash = "sha256:3fbd41d4caf27fa4a377bfd16fef87271099463e6fa73e92a52f92dfee5d425b"},
