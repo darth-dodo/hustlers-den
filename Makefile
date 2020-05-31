@@ -19,3 +19,9 @@ server:
 
 requirements:
 	poetry export -f requirements.txt > requirements.txt
+
+purge-db:
+	python manage.py purge_db
+
+seed-db:
+	python manage.py seed_db

@@ -17,8 +17,8 @@ def get_or_create_groups():
     for current_permission_group in ALL_PERMISSION_GROUPS:
         try:
             permission_group = Group.objects.get(name=current_permission_group)
-        except Exception as e:
-            print(e)
+        except Group.DoesNotExist as e:
+            print(f"Group {current_permission_group} does not exist")
             permission_group = Group()
             permission_group.name = current_permission_group
             permission_group.save()
@@ -27,6 +27,7 @@ def get_or_create_groups():
             )
             permission_group.permissions.set(non_delete_permissions)
             permission_group.save()
+            print(f"Created {permission_group.name} group")
 
 
 def get_or_create_users_and_hustlers():
