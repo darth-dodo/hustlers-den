@@ -1,20 +1,22 @@
-# third party imports
 import logging
 
-# django imports
 from django.db import models
-from django.utils.text import slugify
 from django.db.models.signals import m2m_changed
+from django.utils.text import slugify
 
-# project level imports
-from utils.model_utils import RowInformation, custom_slugify
 from hustlers.models import Hustler
-from knowledge.utils.knowledge_store_utils import generate_knowledge_store_published_message
-from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
 from integrations.constants import SLACK
-
-# app level imports
-from knowledge.managers import CategoryManager, KnowledgeStoreManager, MediaTypeManager, ExpertiseLevelManager
+from integrations.utils.slack_utils import trigger_knowledge_store_broadcast_activity
+from knowledge.managers import (
+    CategoryManager,
+    ExpertiseLevelManager,
+    KnowledgeStoreManager,
+    MediaTypeManager,
+)
+from knowledge.utils.knowledge_store_utils import (
+    generate_knowledge_store_published_message,
+)
+from utils.model_utils import RowInformation, custom_slugify
 
 # TODO data integrity for active hustler check and hustler abstract model
 
@@ -25,19 +27,19 @@ class Category(RowInformation):
     """
     database, python, django, rails ,flask etc
     """
+
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
-    created_by = models.ForeignKey(to=Hustler,
-                                   related_name='categories',
-                                   on_delete=models.SET_NULL,
-                                   null=True)
+    created_by = models.ForeignKey(
+        to=Hustler, related_name="categories", on_delete=models.SET_NULL, null=True
+    )
 
     objects = CategoryManager()
 
     class Meta:
-        db_table = 'category'
-        verbose_name_plural = 'categories'
+        db_table = "category"
+        verbose_name_plural = "categories"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -51,18 +53,18 @@ class MediaType(RowInformation):
     """
     Conf video, article, interactive tutorial
     """
+
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
-    created_by = models.ForeignKey(to=Hustler,
-                                   related_name='media_types',
-                                   on_delete=models.SET_NULL,
-                                   null=True)
+    created_by = models.ForeignKey(
+        to=Hustler, related_name="media_types", on_delete=models.SET_NULL, null=True
+    )
 
     objects = MediaTypeManager()
 
     class Meta:
-        db_table = 'media_type'
+        db_table = "media_type"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -78,18 +80,21 @@ class ExpertiseLevel(RowInformation):
     eg. Beginner, Intermediate, Advanced
     eg. Novice, Apprentice, Master, Expert
     """
+
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
-    created_by = models.ForeignKey(to=Hustler,
-                                   related_name='expertise_levels',
-                                   on_delete=models.SET_NULL,
-                                   null=True)
+    created_by = models.ForeignKey(
+        to=Hustler,
+        related_name="expertise_levels",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
 
     objects = ExpertiseLevelManager()
 
     class Meta:
-        db_table = 'expertise_level'
+        db_table = "expertise_level"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -103,23 +108,39 @@ class KnowledgeStore(RowInformation):
     """
     Stores information mapped across categories and difficulty levels as well as internal ranking
     """
+
     name = models.CharField(max_length=100, blank=False, null=False)
     url = models.URLField(null=True, blank=True)
     description = models.TextField(blank=True)
     difficulty_sort = models.PositiveIntegerField(default=1)
-    expertise_level = models.ForeignKey(to=ExpertiseLevel, related_name='knowledge_store', on_delete=models.SET_NULL,
-                                        null=True)
-    media_type = models.ForeignKey(to=MediaType, related_name='knowledge_store', on_delete=models.SET_NULL, null=True)
-    created_by = models.ForeignKey(to=Hustler, related_name='knowledge_store', on_delete=models.SET_NULL, null=True)
-    modified_by = models.ForeignKey(to=Hustler, related_name='knowledge_store_updated', on_delete=models.SET_NULL,
-                                    null=True)
-    categories = models.ManyToManyField(to=Category, related_name='knowledge_store')
+    expertise_level = models.ForeignKey(
+        to=ExpertiseLevel,
+        related_name="knowledge_store",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    media_type = models.ForeignKey(
+        to=MediaType,
+        related_name="knowledge_store",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    created_by = models.ForeignKey(
+        to=Hustler, related_name="knowledge_store", on_delete=models.SET_NULL, null=True
+    )
+    modified_by = models.ForeignKey(
+        to=Hustler,
+        related_name="knowledge_store_updated",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    categories = models.ManyToManyField(to=Category, related_name="knowledge_store")
     slug = models.CharField(max_length=100, null=True, blank=True)
 
     objects = KnowledgeStoreManager()
 
     class Meta:
-        db_table = 'knowledge_store'
+        db_table = "knowledge_store"
 
     def save(self, *args, **kwargs):
         self.slug = custom_slugify(self.name, offset=30)
@@ -137,13 +158,16 @@ class Packet(RowInformation):
     """
     Helps Users create bundles or packets of knowledge resources
     """
+
     name = models.CharField(max_length=100, blank=False, null=False)
     slug = models.CharField(max_length=100, null=True, blank=True)
-    resources = models.ManyToManyField(to=KnowledgeStore, related_name='packet')
-    created_by = models.ForeignKey(to=Hustler, related_name='packet', on_delete=models.SET_NULL, null=True)
+    resources = models.ManyToManyField(to=KnowledgeStore, related_name="packet")
+    created_by = models.ForeignKey(
+        to=Hustler, related_name="packet", on_delete=models.SET_NULL, null=True
+    )
 
     class Meta:
-        db_table = 'packet'
+        db_table = "packet"
 
     def save(self, *args, **kwargs):
         self.slug = custom_slugify(self.name, offset=30)
@@ -165,7 +189,7 @@ def broadcast_resource_published_message(sender, instance, action, **kwargs):
 
     # different action types are post_add, pre_add, pre_remove, post_remove, pre_clear, post_clear
     # https://docs.djangoproject.com/en/dev/ref/signals/#m2m-changed
-    if action != 'post_add':
+    if action != "post_add":
         return
 
     # broadcast_message = instance.knowledge_store_published_message
@@ -175,11 +199,14 @@ def broadcast_resource_published_message(sender, instance, action, **kwargs):
     logger.debug(resource_object_id)
 
     try:
-        trigger_knowledge_store_broadcast_activity(knowledge_store_object_id=resource_object_id,
-                                                   broadcast_channels=[SLACK])
+        trigger_knowledge_store_broadcast_activity(
+            knowledge_store_object_id=resource_object_id, broadcast_channels=[SLACK]
+        )
     except Exception as e:
         # handle this better
         logger.error("Boardcasting services failed")
 
 
-m2m_changed.connect(broadcast_resource_published_message, sender=KnowledgeStore.categories.through)
+m2m_changed.connect(
+    broadcast_resource_published_message, sender=KnowledgeStore.categories.through
+)

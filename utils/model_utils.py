@@ -1,6 +1,6 @@
+from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.crypto import get_random_string
-from django.db import models
 
 
 def custom_slugify(data, suffix=True, offset=15):
@@ -27,6 +27,7 @@ class RowInformation(models.Model):
     This class is used to maintain meta information such as is_active, created_at, modified_at
     This can  be inherited in other classes to avoid making repeated attributes
     """
+
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

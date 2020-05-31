@@ -1,12 +1,17 @@
 from rest_framework.routers import DefaultRouter
 
-from knowledge.api.views import CategoryViewSet, ExpertiseLevelViewSet, MediaTypeViewSet, KnowledgeStoreViewSet
+from knowledge.api.views import (
+    CategoryViewSet,
+    ExpertiseLevelViewSet,
+    KnowledgeStoreViewSet,
+    MediaTypeViewSet,
+)
 
 router = DefaultRouter()
 
-router.register(r'^category', CategoryViewSet)
-router.register(r'^media-type', MediaTypeViewSet)
-router.register(r'^expertise-level', ExpertiseLevelViewSet)
-router.register(r'^knowledge-store', KnowledgeStoreViewSet)
+router.register(r"^category", CategoryViewSet)
+router.register(r"^media-type", MediaTypeViewSet)
+router.register(r"^expertise-level", ExpertiseLevelViewSet)
+router.register(r"^knowledge-store", KnowledgeStoreViewSet)
 
 urlpatterns = router.urls

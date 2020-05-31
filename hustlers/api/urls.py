@@ -4,6 +4,6 @@ from hustlers.api.views import HustlerViewSet
 
 router = DefaultRouter()
 
-router.register(r'^hustler', HustlerViewSet)
+router.register(r"^hustler", HustlerViewSet)
 
 urlpatterns = router.urls
