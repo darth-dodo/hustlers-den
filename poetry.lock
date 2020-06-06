@@ -204,7 +204,7 @@ description = "A high-level Python Web framework that encourages rapid developme
 name = "django"
 optional = false
 python-versions = ">=3.5"
-version = "2.2.12"
+version = "2.2.13"
 
 [package.dependencies]
 pytz = "*"
@@ -983,7 +983,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "beb3e17df2c076f2feb4ec2cc9f10c5b7dc8cd06a75ba2b618fb73080f84b8e0"
+content-hash = "c6e63656138ed29b4de91c2410815f7d5b1c0ffd65994ad9b88c2b80228d3dbc"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1055,8 +1055,8 @@ dj-database-url = [
     {file = "dj_database_url-0.5.0-py2.py3-none-any.whl", hash = "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"},
 ]
 django = [
-    {file = "Django-2.2.12-py3-none-any.whl", hash = "sha256:6ecd229e1815d4fc5240fc98f1cca78c41e7a8cd3e3f2eefadc4735031077916"},
-    {file = "Django-2.2.12.tar.gz", hash = "sha256:69897097095f336d5aeef45b4103dceae51c00afa6d3ae198a2a18e519791b7a"},
+    {file = "Django-2.2.13-py3-none-any.whl", hash = "sha256:e8fe3c2b2212dce6126becab7a693157f1a441a07b62ec994c046c76af5bb66d"},
+    {file = "Django-2.2.13.tar.gz", hash = "sha256:84f370f6acedbe1f3c41e1a02de44ac206efda3355e427139ecb785b5f596d80"},
 ]
 django-debug-toolbar = [
     {file = "django-debug-toolbar-1.9.1.tar.gz", hash = "sha256:d9ea75659f76d8f1e3eb8f390b47fc5bad0908d949c34a8a3c4c87978eb40a0f"},
@@ -1365,7 +1365,7 @@ sqlparse = [
     {file = "sqlparse-0.2.4.tar.gz", hash = "sha256:ce028444cfab83be538752a2ffdb56bc417b7784ff35bb9a3062413717807dec"},
 ]
 swagger-spec-validator = [
-    {file = "swagger-spec-validator-2.6.0.macosx-10.15-x86_64.tar.gz", hash = "sha256:8cefd19349681531b07a187eee85c2ffe39353a0f1f21989ec29da6af618424b"},
+    {file = "swagger-spec-validator-2.6.0.tar.gz", hash = "sha256:b7c74f216a5af686e446ace8dc46a47b21ae2e677fd05825d7c2da0b1193b195"},
     {file = "swagger_spec_validator-2.6.0-py2.py3-none-any.whl", hash = "sha256:ba4e636d89bf547a6f41a6945bb503cf06dde13664ad978a7407aaed772ae75f"},
 ]
 toml = [
