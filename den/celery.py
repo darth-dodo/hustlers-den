@@ -4,11 +4,9 @@ import os
 
 from celery import Celery
 
-from den.settings.base import get_env_variable
+from den.settings.base import env
 
-os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE", get_env_variable("DJANGO_SETTINGS_MODULE")
-)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", env("DJANGO_SETTINGS_MODULE"))
 app = Celery("den")
 
 app.config_from_object("django.conf:settings", namespace="CELERY")

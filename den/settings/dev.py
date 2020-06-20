@@ -1,30 +1,39 @@
-import dj_database_url
-
 from .base import *
 
-DEBUG = get_env_variable("DEBUG_MODE")
-HEROKU_MODE = get_env_variable("HEROKU_MODE")
+DEBUG = env.bool("DEBUG_MODE")
+HEROKU_MODE = env.bool("HEROKU_MODE")
 
-if HEROKU_MODE:
-    # https://stackoverflow.com/a/26080380/10400264
-    DATABASE_URL = get_env_variable("DATABASE_URL")
-    DATABASES = {"default": dj_database_url.config(default=DATABASE_URL)}
+# if HEROKU_MODE:
+#     # https://stackoverflow.com/a/26080380/10400264
+#     DATABASE_URL = env.db("DATABASE_URL")
+#     DATABASES = {"default": dj_database_url.config(default=DATABASE_URL)}
+#
+#
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql_psycopg2",
+#             "NAME": env("DATABASE_NAME"),
+#             "USER": env("DATABASE_USER"),
+#             "PASSWORD": env("DATABASE_PASSWORD"),
+#             "HOST": env.db("DATABASE_HOST"),
+#             "PORT": env(
+#                 "DATABASE_PORT"
+#             ),  # Set to empty string for default.
+#         }
+#     }
 
 
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": get_env_variable("DATABASE_NAME"),
-            "USER": get_env_variable("DATABASE_USER"),
-            "PASSWORD": get_env_variable("DATABASE_PASSWORD"),
-            "HOST": get_env_variable("DATABASE_HOST"),
-            "PORT": get_env_variable(
-                "DATABASE_PORT"
-            ),  # Set to empty string for default.
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("DATABASE_NAME"),
+        "USER": env("DATABASE_USER"),
+        "PASSWORD": env("DATABASE_PASSWORD"),
+        "HOST": env.db("DATABASE_HOST"),
+        "PORT": env("DATABASE_PORT"),  # Set to empty string for default.
     }
-
+}
 
 # enable/disable qcount
 if True:
@@ -59,8 +68,8 @@ if True:
     INTERNAL_IPS = ["127.0.0.1"]
 
 # sentry configuration only for env
-SENTRY_SECRET_KEY = get_env_variable("SENTRY_SECRET_KEY")
-SENTRY_PROJECT_ID = get_env_variable("SENTRY_PROJECT_ID")
+SENTRY_SECRET_KEY = env("SENTRY_SECRET_KEY")
+SENTRY_PROJECT_ID = env("SENTRY_PROJECT_ID")
 SENTRY_DSN = "https://{0}@sentry.io/{1}".format(SENTRY_SECRET_KEY, SENTRY_PROJECT_ID)
 
 RAVEN_CONFIG = {"dsn": SENTRY_DSN}

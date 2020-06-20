@@ -1,4 +1,4 @@
-from den.settings.base import get_env_variable
+from den.settings.base import env
 
 # integration channels
 SLACK = "SL"
@@ -6,8 +6,8 @@ BASECAMP = "BC"
 BROWSER_EXTENSION = "BE"
 
 # slack related constants
-SLACK_WEBHOOK_BASE_URL = get_env_variable("SLACK_WEBHOOK_BASE_URL")
-SLACK_WEBHOOK_CHANNEL_ID = get_env_variable("SLACK_WEBHOOK_CHANNEL_ID")
+SLACK_WEBHOOK_BASE_URL = env("SLACK_WEBHOOK_BASE_URL")
+SLACK_WEBHOOK_CHANNEL_ID = env("SLACK_WEBHOOK_CHANNEL_ID")
 SLACK_WEBHOOK_CHANNEL_URL = "{0}{1}".format(
     SLACK_WEBHOOK_BASE_URL, SLACK_WEBHOOK_CHANNEL_ID
 )

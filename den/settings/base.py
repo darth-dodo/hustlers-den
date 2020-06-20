@@ -12,37 +12,21 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import datetime
 import os
+from pathlib import Path
 
-from django.core.exceptions import ImproperlyConfigured
+import environ
 
 from den.logging_configs.heroku import heroku_logging_config
 from den.logging_configs.local import local_logging_config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-def parse_bool(env_var):
-    list_of_truth = [True, "true", "True", 1, "1"]
-    list_of_false = [False, "false", "False", 0, "0"]
+env = environ.Env()
+env.read_env(str(ROOT_DIR / ".env"))
 
-    if env_var in list_of_truth:
-        return True
-    elif env_var in list_of_false:
-        return False
-    else:
-        return env_var
-
-
-def get_env_variable(var_name):
-    try:
-        env_var = os.environ[var_name]
-        return parse_bool(env_var)
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
-
-
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # TODO change this
 ALLOWED_HOSTS = ["*"]
@@ -181,13 +165,13 @@ LOGGING_CONFIG = None
 LOG_ROOT = os.path.join(BASE_DIR, "..", "logs")
 
 # application log level
-LOG_LEVEL = get_env_variable("ENV_LOG_LEVEL")
+LOG_LEVEL = env("ENV_LOG_LEVEL")
 
 # separate log level for logging in Rotated file
-FILE_LOG_LEVEL = get_env_variable("FILE_LOG_LEVEL")
+FILE_LOG_LEVEL = env("FILE_LOG_LEVEL")
 
 # all logging including and above this level will be reported to Sentry
-SENTRY_LOG_LEVEL = get_env_variable("SENTRY_LOG_LEVEL")
+SENTRY_LOG_LEVEL = env("SENTRY_LOG_LEVEL")
 
 
 # Python logging on sentry, console and in file
@@ -198,7 +182,7 @@ logging_options["LOG_LEVEL"] = LOG_LEVEL
 logging_options["FILE_LOG_LEVEL"] = FILE_LOG_LEVEL
 logging_options["SENTRY_LOG_LEVEL"] = SENTRY_LOG_LEVEL
 
-if get_env_variable("LOCAL_LOGGING"):
+if env.bool("LOCAL_LOGGING"):
     local_logging_config(**logging_options)
 
 else:
@@ -206,8 +190,8 @@ else:
 
 
 # celery configuration
-CELERY_BROKER_URL = get_env_variable("CELERY_RESULT_BACKEND")
-CELERY_RESULT_BACKEND = get_env_variable("CELERY_BROKER_URL")
+CELERY_BROKER_URL = env.cache("CELERY_RESULT_BACKEND")
+CELERY_RESULT_BACKEND = env.cache("CELERY_BROKER_URL")
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"

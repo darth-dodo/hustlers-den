@@ -3,7 +3,7 @@ import logging
 from django.http.response import JsonResponse
 from django.utils.deprecation import MiddlewareMixin
 
-from den.settings.base import get_env_variable
+from den.settings.base import env
 from utils.constants import DEFAULT_SERVER_ERROR
 from utils.hustlers_den_exceptions import (
     HustlersDenBaseException,
@@ -48,7 +48,7 @@ class HustlersDenExceptionMiddleware(MiddlewareMixin):
 
         # process response if not captured by custom error handlers
         # return default message for non dev envs
-        if get_env_variable("DEBUG_MODE"):
+        if env("DEBUG_MODE"):
             return
         else:
             return JsonResponse(response_data, status=status_code)

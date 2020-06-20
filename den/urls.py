@@ -6,7 +6,7 @@ from rest_framework import permissions
 from rest_framework_jwt.views import obtain_jwt_token
 
 # project level imports
-from den.settings.base import ADMIN_SITE_HEADER, get_env_variable
+from den.settings.base import ADMIN_SITE_HEADER, env
 
 admin.site.site_header = ADMIN_SITE_HEADER
 schema_view = get_schema_view(
@@ -47,7 +47,7 @@ urlpatterns += [
     ),
 ]
 
-if get_env_variable("DEBUG_TOOLBAR"):
+if env("DEBUG_TOOLBAR"):
     import debug_toolbar
 
     urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)),] + urlpatterns
