@@ -250,14 +250,11 @@ Django = ">=1.11"
 
 [[package]]
 category = "main"
-description = "Modern template for Django admin interface with improved functionality"
-name = "django-jet"
+description = "A jazzy skin for the Django Admin-Interface."
+name = "django-grappelli"
 optional = false
 python-versions = "*"
-version = "1.0.7"
-
-[package.dependencies]
-Django = "*"
+version = "2.14.2"
 
 [[package]]
 category = "main"
@@ -983,7 +980,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "c6e63656138ed29b4de91c2410815f7d5b1c0ffd65994ad9b88c2b80228d3dbc"
+content-hash = "3ce8de4f2f07d131a65f8880ae334d5efee0d6fdf876317e3165fe4194434b4c"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1070,8 +1067,8 @@ django-filter = [
     {file = "django-filter-2.2.0.tar.gz", hash = "sha256:c3deb57f0dd7ff94d7dce52a047516822013e2b441bed472b722a317658cfd14"},
     {file = "django_filter-2.2.0-py3-none-any.whl", hash = "sha256:558c727bce3ffa89c4a7a0b13bc8976745d63e5fd576b3a9a851650ef11c401b"},
 ]
-django-jet = [
-    {file = "django-jet-1.0.7.tar.gz", hash = "sha256:64dae9356ac4f5f72ba5b2d7fd1a260612c74561b55b873553e2f2594bc15f3d"},
+django-grappelli = [
+    {file = "django-grappelli-2.14.2.tar.gz", hash = "sha256:206d34525007e996dc989f1a0deef653b1fae5e0972a1fb24a59a3ad7e67141a"},
 ]
 django-querycount = [
     {file = "django-querycount-0.7.0.tar.gz", hash = "sha256:8f5123d78716ff0704f2373e746a7200b8d8417798ce4a99bf2de87e3768f9ce"},
@@ -1365,7 +1362,7 @@ sqlparse = [
     {file = "sqlparse-0.2.4.tar.gz", hash = "sha256:ce028444cfab83be538752a2ffdb56bc417b7784ff35bb9a3062413717807dec"},
 ]
 swagger-spec-validator = [
-    {file = "swagger-spec-validator-2.6.0.tar.gz", hash = "sha256:b7c74f216a5af686e446ace8dc46a47b21ae2e677fd05825d7c2da0b1193b195"},
+    {file = "swagger-spec-validator-2.6.0.macosx-10.15-x86_64.tar.gz", hash = "sha256:8cefd19349681531b07a187eee85c2ffe39353a0f1f21989ec29da6af618424b"},
     {file = "swagger_spec_validator-2.6.0-py2.py3-none-any.whl", hash = "sha256:ba4e636d89bf547a6f41a6945bb503cf06dde13664ad978a7407aaed772ae75f"},
 ]
 toml = [

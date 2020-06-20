@@ -16,7 +16,7 @@ repos:
     -  id: check-merge-conflict
     -  id: debug-statements
     -  id: end-of-file-fixer
-       exclude: ^staticfiles/
+       exclude: ^den/staticfiles/
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
     rev: v1.0.4
     hooks:
@@ -32,4 +32,4 @@ repos:
     hooks:
     - id: black
       language_version: python3.7
-      exclude: ^staticfiles/
+      exclude: ^den/staticfiles/
