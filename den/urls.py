@@ -22,8 +22,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    url("grappelli/", include("grappelli.urls")),  # grappelli URLS
     url(r"^", admin.site.urls),
-    url(r"^jet/", include("jet.urls", "jet")),
     url(r"^auth/login/$", obtain_jwt_token),
     url(r"^api/knowledge/", include("knowledge.api.urls")),
     url(r"^api/integrations/", include("integrations.api.urls")),

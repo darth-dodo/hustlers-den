@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+from django.contrib.admin import TabularInline
 from django.utils.html import format_html
-from jet.admin import CompactInline
 
 from hustlers.models import Hustler
 from knowledge.models import Category, ExpertiseLevel, KnowledgeStore, MediaType, Packet
@@ -10,12 +10,12 @@ from knowledge.models import Category, ExpertiseLevel, KnowledgeStore, MediaType
 # create a hustler mixin
 
 
-class CategoriesInline(CompactInline):
+class CategoriesInline(TabularInline):
     model = Category
     can_delete = False
 
 
-class KnowledgeStoresInline(CompactInline):
+class KnowledgeStoresInline(TabularInline):
     model = KnowledgeStore
     can_delete = False
 
@@ -28,7 +28,7 @@ class KnowledgeStorePacketsInline(KnowledgeStoresInline):
     model = Packet.resources.through
 
 
-class KnowledgeStoreInline(CompactInline):
+class KnowledgeStoreInline(TabularInline):
     model = KnowledgeStore
     readonly_fields = (
         "name",
