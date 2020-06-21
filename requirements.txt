@@ -60,8 +60,8 @@ django-extensions==2.2.9 \
 django-filter==2.2.0 \
     --hash=sha256:c3deb57f0dd7ff94d7dce52a047516822013e2b441bed472b722a317658cfd14 \
     --hash=sha256:558c727bce3ffa89c4a7a0b13bc8976745d63e5fd576b3a9a851650ef11c401b
-django-jet==1.0.7 \
-    --hash=sha256:64dae9356ac4f5f72ba5b2d7fd1a260612c74561b55b873553e2f2594bc15f3d
+django-grappelli==2.14.2 \
+    --hash=sha256:206d34525007e996dc989f1a0deef653b1fae5e0972a1fb24a59a3ad7e67141a
 django-querycount==0.7.0 \
     --hash=sha256:8f5123d78716ff0704f2373e746a7200b8d8417798ce4a99bf2de87e3768f9ce
 djangorestframework==3.11.0 \
@@ -305,7 +305,7 @@ sqlparse==0.2.4 \
     --hash=sha256:d9cf190f51cbb26da0412247dfe4fb5f4098edb73db84e02f9fc21fdca31fed4 \
     --hash=sha256:ce028444cfab83be538752a2ffdb56bc417b7784ff35bb9a3062413717807dec
 swagger-spec-validator==2.6.0 \
-    --hash=sha256:b7c74f216a5af686e446ace8dc46a47b21ae2e677fd05825d7c2da0b1193b195 \
+    --hash=sha256:8cefd19349681531b07a187eee85c2ffe39353a0f1f21989ec29da6af618424b \
     --hash=sha256:ba4e636d89bf547a6f41a6945bb503cf06dde13664ad978a7407aaed772ae75f
 toml==0.10.1 \
     --hash=sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88 \
